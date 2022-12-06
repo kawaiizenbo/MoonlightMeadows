@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "moonlight",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Moonlight Meadows",
+  "description": "Utility mod with a focus on stability.",
   "authors": [
-    "Me!"
+    "KawaiiZenbo"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://kawaiizenbo.me/",
+    "sources": "https://github.com/kawaiizenbo/MoonlightMeadows"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "MIT",
+  "icon": "assets/moonlight/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "me.kawaiizenbo.moonlight.Moonlight"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "moonlight.mixins.json"
   ],
 
   "depends": {
@@ -31,8 +31,5 @@
     "fabric-api": "*",
     "minecraft": "~1.19",
     "java": ">=17"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }
