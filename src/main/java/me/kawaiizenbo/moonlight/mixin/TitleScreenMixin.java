@@ -47,7 +47,7 @@ public abstract class TitleScreenMixin extends Screen
     }
 
     @Inject(at = @At("TAIL"), method = "init")
-	private void altManagerButton(int y, int spacingY, CallbackInfo callbackInfo) 
+	private void altManagerButton(CallbackInfo callbackInfo) 
     {
         this.addDrawableChild(new ButtonWidget(this.width - 102, 2, 100, 20, Text.literal("Alt Manager"), (button) -> {
             MinecraftClient.getInstance().setScreen(AltManagerScreen.INSTANCE);
