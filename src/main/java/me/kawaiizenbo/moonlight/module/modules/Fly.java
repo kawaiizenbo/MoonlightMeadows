@@ -1,5 +1,6 @@
 package me.kawaiizenbo.moonlight.module.modules;
 
+import me.kawaiizenbo.moonlight.module.Category;
 import me.kawaiizenbo.moonlight.module.Module_;
 
 public class Fly extends Module_ 
@@ -7,7 +8,7 @@ public class Fly extends Module_
 
     public Fly() 
     {
-        super("Fly", "Allows you to fly in survival mode.");
+        super("Fly", "Allows you to fly in survival mode.", Category.MOVEMENT);
     }
     
     @Override

@@ -10,7 +10,8 @@
     "MultiplayerScreenMixin",
     "InGameHUDMixin",
     "ChatInputSuggestorMixin",
-    "ClientConnectionMixin"
+    "ClientConnectionMixin",
+    "LivingEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

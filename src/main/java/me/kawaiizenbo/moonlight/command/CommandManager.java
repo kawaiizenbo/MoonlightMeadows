@@ -28,6 +28,7 @@ public class CommandManager
     	add(new VClip());
         add(new Help());
         add(new Toggle());
+        add(new Teleport());
         commands.sort(Comparator.comparing(Command::getName));
     }
 
@@ -81,6 +82,6 @@ public class CommandManager
     }
 
 	public String getPrefix() {
-		return "?";
+		return ".";
 	}
 }

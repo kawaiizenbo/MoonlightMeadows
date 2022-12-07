@@ -38,7 +38,7 @@ public abstract class ChatInputSuggestorMixin
 
     @Shadow private SuggestionWindow window;
 
-    @Shadow protected abstract void showCommandSuggestions();
+    @Shadow abstract void showCommandSuggestions();
 
     @Inject(method = "refresh",
             at = @At(value = "INVOKE", target = "Lcom/mojang/brigadier/StringReader;canRead()Z", remap = false),

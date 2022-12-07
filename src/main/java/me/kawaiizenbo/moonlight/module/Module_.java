@@ -7,12 +7,14 @@ public abstract class Module_
     protected static MinecraftClient mc = MinecraftClient.getInstance();
     public String name;
     public String description;
+    public Category category;
     public boolean enabled;
 
-    public Module_(String name, String description)
+    public Module_(String name, String description, Category category)
     {
         this.name = name;
         this.description = description;
+        this.category = category;
     }
 
     public void onEnable() {}

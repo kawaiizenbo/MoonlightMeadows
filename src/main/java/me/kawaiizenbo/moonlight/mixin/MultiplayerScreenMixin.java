@@ -23,8 +23,14 @@ public class MultiplayerScreenMixin extends Screen
     @Inject(at = @At("TAIL"), method = "init")
 	private void altManagerButton(CallbackInfo callbackInfo) 
     {
-        this.addDrawableChild(new ButtonWidget(this.width - 102, 2, 100, 20, Text.literal("Alt Manager"), (button) -> {
-            MinecraftClient.getInstance().setScreen(AltManagerScreen.INSTANCE);
-       })).active = true;
+        this.addDrawableChild(ButtonWidget.builder(Text.literal("Alt Manager"), this::gotoAltManagerScreen)
+            .position(this.width - 102, 2)
+            .size(100, 20)
+            .build());
 	}
+
+    private void gotoAltManagerScreen(ButtonWidget button)
+    {
+        MinecraftClient.getInstance().setScreen(AltManagerScreen.INSTANCE);
+    }
 }
