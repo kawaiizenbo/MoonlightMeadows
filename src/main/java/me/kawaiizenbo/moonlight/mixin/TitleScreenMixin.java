@@ -1,7 +1,7 @@
 package me.kawaiizenbo.moonlight.mixin;
 
 import me.kawaiizenbo.moonlight.Moonlight;
-import me.kawaiizenbo.moonlight.ui.AltManagerScreen;
+import me.kawaiizenbo.moonlight.ui.altmanager.AltManagerScreen;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,12 +1,11 @@
 package me.kawaiizenbo.moonlight.mixin;
 
-import me.kawaiizenbo.moonlight.ui.AltManagerScreen;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import me.kawaiizenbo.moonlight.ui.altmanager.AltManagerScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;

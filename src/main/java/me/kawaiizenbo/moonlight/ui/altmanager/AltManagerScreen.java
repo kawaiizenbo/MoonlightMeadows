@@ -1,4 +1,4 @@
-package me.kawaiizenbo.moonlight.ui;
+package me.kawaiizenbo.moonlight.ui.altmanager;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;

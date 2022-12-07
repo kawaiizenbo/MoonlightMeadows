@@ -21,10 +21,10 @@ public class ColorUtils
 	public static String yellow = "\247e";
 	public static String white = "\247f";
 	
-	public static String underline = "\247u";
+	public static String underline = "\247n";
     public static String bold = "\247l";
     public static String italic = "\247o";
     public static String strikethrough = "\247m";
-    public static String cipher = "\247k";
+    public static String obfuscated = "\247k";
 	public static String reset = "\247r";
 }

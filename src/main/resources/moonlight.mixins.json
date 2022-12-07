@@ -7,7 +7,10 @@
   ],
   "client": [
     "TitleScreenMixin",
-    "MultiplayerScreenMixin"
+    "MultiplayerScreenMixin",
+    "InGameHUDMixin",
+    "ChatInputSuggestorMixin",
+    "ClientConnectionMixin"
   ],
   "injectors": {
     "defaultRequire": 1
