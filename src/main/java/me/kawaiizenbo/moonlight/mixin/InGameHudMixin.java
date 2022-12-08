@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import me.kawaiizenbo.moonlight.module.ModuleManager;
 import me.kawaiizenbo.moonlight.ui.HUD;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
@@ -19,7 +20,7 @@ public class InGameHudMixin {
 	@Inject(at = @At("TAIL"), method = "render") 
 	public void onRender (MatrixStack matrices, float tickDelta, CallbackInfo info) 
     {
-		HUD.INSTANCE.renderHUD(matrices, scaledWidth, scaledHeight);
+		if (ModuleManager.INSTANCE.getModuleByName("HUD").enabled) HUD.INSTANCE.renderHUD(matrices, scaledWidth, scaledHeight);
 	}
 
 }

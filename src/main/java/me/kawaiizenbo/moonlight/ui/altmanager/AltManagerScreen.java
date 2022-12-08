@@ -5,11 +5,11 @@ import net.minecraft.text.Text;
 
 public class AltManagerScreen extends Screen 
 {
+    public static AltManagerScreen INSTANCE = new AltManagerScreen();
 
-    public static AltManagerScreen INSTANCE = new AltManagerScreen(null);
-    protected AltManagerScreen(Text title) 
+    protected AltManagerScreen() 
     {
-        super(title);
+        super(Text.literal("Alt Manager"));
     }
     
 }

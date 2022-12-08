@@ -11,26 +11,48 @@ public class ModuleManager
 
     public ModuleManager()
     {
-        registerModules(new Fly());
+        registerModules(
+			new Fly(),
+			new NoFall(),
+			new HUDModule()
+		);
     }
 
-    public void registerModule(Module_ module) {
+    public void registerModule(Module_ module) 
+	{
 		modules.add(module);
 	}
 	
-	public void registerModules(Module_... modules) {
+	public void registerModules(Module_... modules) 
+	{
 		for (Module_ module : modules) {
 			this.modules.add(module);
 		}
 	}
 
-    public Module_ getModuleByName(String moduleName) {
-		for(Module_ mod : modules) {
-			if ((mod.name.trim().equalsIgnoreCase(moduleName)) || (mod.toString().trim().equalsIgnoreCase(moduleName.trim()))) {
-				return mod;
+    public Module_ getModuleByName(String moduleName) 
+	{
+		for(Module_ module : modules) 
+		{
+			if ((module.name.trim().equalsIgnoreCase(moduleName)))
+			{
+				return module;
 			}
 		}
 		return null;
+	}
+
+	public ArrayList<Module_> getModulesByCategory(Category category)
+	{
+		ArrayList<Module_> returnedModules = new ArrayList<>();
+		for(Module_ module : modules) 
+		{
+			if (module.category == category) 
+			{
+				returnedModules.add(module);
+			}
+		}
+		return returnedModules;
 	}
 
 	public ArrayList<Module_> getEnabledModules() 

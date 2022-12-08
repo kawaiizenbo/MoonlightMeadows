@@ -11,7 +11,8 @@
     "InGameHUDMixin",
     "ChatInputSuggestorMixin",
     "ClientConnectionMixin",
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "KeyboardMixin"
   ],
   "injectors": {
     "defaultRequire": 1
