@@ -24,8 +24,8 @@ public class ClickGUIScreen extends Screen
 			yOffset = 25;
 			for (Module_ module : ModuleManager.INSTANCE.getModulesByCategory(category))
 			{
-				moduleButtons.add(new ModuleButton(module, 9+(module.category.ordinal()*65), yOffset));
-				yOffset += 10;
+				moduleButtons.add(new ModuleButton(module, 9+(module.category.ordinal()*70), yOffset));
+				yOffset += 14;
 			}
 		}
 		
@@ -39,7 +39,7 @@ public class ClickGUIScreen extends Screen
 		for (Category category : Category.values())
 		{
 			textRenderer.draw(matrices, category.name, categoryLabelXOffset, 10, 0xFFFFFF);
-			categoryLabelXOffset += 65;
+			categoryLabelXOffset += 70;
 		}
 		for (ModuleButton moduleButton : moduleButtons)
 		{

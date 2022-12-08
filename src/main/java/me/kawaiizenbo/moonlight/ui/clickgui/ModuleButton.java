@@ -17,15 +17,15 @@ public class ModuleButton
 		this.module = module;
 		this.x = x;
 		this.y = y;
-		this.width = 60;
-		this.height = 10;
+		this.width = 70;
+		this.height = 14;
 	}
 
     public void render(MatrixStack matrices, int mouseX, int mouseY) 
     {
 		TextRenderer textRenderer = mc.textRenderer;
 		DrawableHelper.fill(matrices, x, y, x + width, y + height, hovered(mouseX, mouseY) ? 0xFF333333 : 0xFF222222);
-		textRenderer.draw(matrices, module.name, x+1, y+1, module.enabled ? 0x55FFFF : 0xFFFFFF);
+		textRenderer.draw(matrices, module.name, x+3, y+3, module.enabled ? 0x55FFFF : 0xFFFFFF);
 	}
 	
 	public boolean hovered(int mouseX, int mouseY) 
@@ -37,7 +37,14 @@ public class ModuleButton
     {
 		if (hovered(mouseX, mouseY)) 
         {
-		    module.toggle();
+            if (button == 0)
+            {
+                module.toggle();
+            }
+		    else if (button == 1)
+            {
+                MinecraftClient.getInstance().setScreen(new SettingsScreen(module));
+            }
 		}
 	}
 }

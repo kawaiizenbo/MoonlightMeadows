@@ -14,7 +14,8 @@ public class ModuleManager
         registerModules(
 			new Fly(),
 			new NoFall(),
-			new HUDModule()
+			new HUDModule(),
+			new TestDisplay()
 		);
     }
 
