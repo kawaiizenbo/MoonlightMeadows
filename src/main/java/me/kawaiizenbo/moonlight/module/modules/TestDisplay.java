@@ -6,8 +6,8 @@ import me.kawaiizenbo.moonlight.module.settings.DoubleSetting;
 
 public class TestDisplay extends Module_
 {
-    DoubleSetting test1 = new DoubleSetting("test1", 1, 0, 20, 1);
-    DoubleSetting test2 = new DoubleSetting("test2", 0, 0, 1, 0.1);
+    DoubleSetting test1 = new DoubleSetting("test1", 1, 0, 20, 0);
+    DoubleSetting test2 = new DoubleSetting("test2", 0, 0, 1, 1);
 
     public TestDisplay()
     {

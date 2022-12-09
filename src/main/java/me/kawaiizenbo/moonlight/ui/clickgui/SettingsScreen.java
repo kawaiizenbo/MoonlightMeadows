@@ -18,7 +18,6 @@ public class SettingsScreen extends Screen
     {
         super(Text.literal("Settings"));
         this.module = module;
-        backButton = new TextButton(ColorUtils.underline + "< Back", 112, 32, 0xFFFFFF);
     }
 
     @Override
@@ -26,14 +25,15 @@ public class SettingsScreen extends Screen
 	{
         this.renderBackground(matrices);
         DrawableHelper.fill(matrices, (width/2)-112, (height/2)-96, (width/2)+112, (height/2)+96, 0xFF222222);
-        DrawableHelper.drawCenteredText(matrices, textRenderer, module.name, width/2, 32, 0xFFFFFF);
-        DrawableHelper.drawTextWithShadow(matrices, textRenderer, Text.literal(module.description), 112, 48, 0xFFFFFF);
+        DrawableHelper.drawCenteredText(matrices, textRenderer, module.name, width/2, (height/2)-88, 0xFFFFFF);
+        DrawableHelper.drawTextWithShadow(matrices, textRenderer, Text.literal(module.description), (width/2)-104, (height/2)-72, 0xFFFFFF);
+        backButton = new TextButton(ColorUtils.underline + "< Back", (width/2)-104, (height/2)-88, 0xFFFFFF);
         backButton.render(matrices, textRenderer, mouseX, mouseY);
-		int yOffset = 64;
+		int yOffset = (height/2)-56;
 		for (Setting setting : module.settings)
 		{
-			setting.render(matrices, 117, yOffset, mouseX, mouseY);
-			yOffset += 32;
+			setting.render(matrices, (width/2)-96, yOffset, mouseX, mouseY);
+			yOffset += 25;
 		}
         // add keybind setting here eventually
 	}
@@ -48,6 +48,30 @@ public class SettingsScreen extends Screen
     public boolean mouseClicked(double mouseX, double mouseY, int button)
     {
         backButton.mouseClicked((int)mouseX, (int)mouseY);
+        for (Setting setting : module.settings)
+        {
+            setting.mouseClicked(mouseX, mouseY, button);
+        }
         return super.mouseClicked(mouseX, mouseY, button);
+    }
+
+    @Override
+    public boolean mouseReleased(double mouseX, double mouseY, int button)
+    {
+        for (Setting setting : module.settings)
+        {
+            setting.mouseReleased(mouseX, mouseY, button);
+        }
+        return super.mouseReleased(mouseX, mouseY, button);
+    }
+
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers)
+    {
+        for (Setting setting : module.settings)
+        {
+            setting.keyPressed(keyCode, scanCode, modifiers);
+        }
+        return super.keyPressed(keyCode, scanCode, modifiers);
     }
 }
