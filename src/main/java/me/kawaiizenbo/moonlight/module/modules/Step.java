@@ -11,6 +11,7 @@ public class Step extends Module_
     public Step()
     {
         super("Step", "Allows you to step up full blocks.", Category.MOVEMENT);
+        settings.add(stepHeight);
     }
 
     @Override

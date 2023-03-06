@@ -15,7 +15,8 @@ public class ModuleManager
 			new Fly(),
 			new NoFall(),
 			new HUDModule(),
-			new Step()
+			new Step(),
+			new Fullbright()
 		);
     }
 

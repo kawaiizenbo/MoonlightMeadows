@@ -3,7 +3,6 @@ package me.kawaiizenbo.moonlight.util;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
