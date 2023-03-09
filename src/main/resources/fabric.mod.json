@@ -23,6 +23,7 @@
       "me.kawaiizenbo.moonlight.Moonlight"
     ]
   },
+  "accessWidener" : "moonlight.accesswidener",
   "mixins": [
     "moonlight.mixins.json"
   ],

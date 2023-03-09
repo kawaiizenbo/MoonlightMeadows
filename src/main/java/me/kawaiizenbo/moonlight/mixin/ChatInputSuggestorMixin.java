@@ -50,7 +50,6 @@ public abstract class ChatInputSuggestorMixin
         if (reader.canRead(length) && reader.getString().startsWith(prefix, reader.getCursor())) {
             reader.setCursor(reader.getCursor() + length);
             assert this.client.player != null;
-            // Pretty much copy&paste from the refresh method
             CommandDispatcher<CommandSource> commandDispatcher = CommandManager.get().getDispatcher();
             if (this.parse == null) {
                 this.parse = commandDispatcher.parse(reader, CommandManager.get().getCommandSource());

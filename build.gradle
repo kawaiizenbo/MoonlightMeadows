@@ -33,6 +33,10 @@ dependencies {
 	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
 }
 
+loom {
+	accessWidenerPath = file("src/main/resources/moonlight.accesswidener")
+}
+
 processResources {
 	inputs.property "version", project.version
 

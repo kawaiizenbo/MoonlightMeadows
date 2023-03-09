@@ -33,7 +33,7 @@ public class SettingsScreen extends Screen
 		for (Setting setting : module.settings)
 		{
 			setting.render(matrices, (width/2)-96, yOffset, mouseX, mouseY);
-			yOffset += 25;
+			yOffset += setting.height + 1;
 		}
         // add keybind setting here eventually
 	}
