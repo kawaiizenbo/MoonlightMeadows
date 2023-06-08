@@ -15,7 +15,6 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
@@ -37,13 +36,13 @@ public abstract class TitleScreenMixin extends Screen
     }
 
     @Inject(at = @At("TAIL"), method = "render")
-    private void clientTag(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo info) 
+    private void clientTag(DrawContext drawContext, int mouseX, int mouseY, float delta, CallbackInfo info) 
     {
         float f = this.doBackgroundFade ? (Util.getMeasuringTimeMs() - this.backgroundFadeStart) / 1000.0F : 1.0F;
         float g = this.doBackgroundFade ? MathHelper.clamp(f - 1.0F, 0.0F, 1.0F) : 1.0F;
         int l = MathHelper.ceil(g * 255.0F) << 24;
 
-        DrawContext.drawTextWithShadow(matrices, this.textRenderer, Moonlight.clientTag + " " + Moonlight.versionTag, 2, 2, 16777215 | l);
+        drawContext.drawTextWithShadow(this.textRenderer, Moonlight.clientTag + " " + Moonlight.versionTag, 2, 2, 16777215 | l);
     }
 
     @Inject(at = @At("TAIL"), method = "init")

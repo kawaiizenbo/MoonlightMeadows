@@ -3,7 +3,6 @@ package me.kawaiizenbo.moonlight.module.settings;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.util.math.MatrixStack;
 
 public class Setting 
 {
@@ -12,11 +11,11 @@ public class Setting
     public int height = 24;
 
     int x = 0, y = 0;
-    public void render(MatrixStack matrices, int x, int y, int mouseX, int mouseY)
+    public void render(DrawContext drawContext, int x, int y, int mouseX, int mouseY)
     { 
         this.x = x;
         this.y = y;
-        DrawContext.fill(matrices, x, y, x+192, y+height, hovered(mouseX, mouseY) ? 0xFF444444: 0xFF222222);
+        drawContext.fill(x, y, x+192, y+height, hovered(mouseX, mouseY) ? 0xFF444444: 0xFF222222);
         
     }
 

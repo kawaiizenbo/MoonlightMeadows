@@ -6,7 +6,6 @@ import me.kawaiizenbo.moonlight.ui.TextButton;
 import me.kawaiizenbo.moonlight.util.ColorUtils;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 
 public class SettingsScreen extends Screen 
@@ -21,18 +20,18 @@ public class SettingsScreen extends Screen
     }
 
     @Override
-	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) 
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) 
 	{
-        this.renderBackground(matrices);
-        DrawContext.fill(matrices, (width/2)-112, (height/2)-96, (width/2)+112, (height/2)+96, 0xFF222222);
-        DrawContext.drawCenteredTextWithShadow(matrices, textRenderer, module.name, width/2, (height/2)-88, 0xFFFFFF);
-        DrawContext.drawTextWithShadow(matrices, textRenderer, Text.literal(module.description), (width/2)-104, (height/2)-72, 0xFFFFFF);
+        this.renderBackground(drawContext);
+        drawContext.fill((width/2)-112, (height/2)-96, (width/2)+112, (height/2)+96, 0xFF222222);
+        drawContext.drawCenteredTextWithShadow(textRenderer, module.name, width/2, (height/2)-88, 0xFFFFFF);
+        drawContext.drawTextWithShadow(textRenderer, Text.literal(module.description), (width/2)-104, (height/2)-72, 0xFFFFFF);
         backButton = new TextButton(ColorUtils.underline + "< Back", (width/2)-104, (height/2)-88, 0xFFFFFF);
-        backButton.render(matrices, textRenderer, mouseX, mouseY);
+        backButton.render(drawContext, textRenderer, mouseX, mouseY);
 		int yOffset = (height/2)-56;
 		for (Setting setting : module.settings)
 		{
-			setting.render(matrices, (width/2)-96, yOffset, mouseX, mouseY);
+			setting.render(drawContext, (width/2)-96, yOffset, mouseX, mouseY);
 			yOffset += setting.height + 1;
 		}
         // add keybind setting here eventually

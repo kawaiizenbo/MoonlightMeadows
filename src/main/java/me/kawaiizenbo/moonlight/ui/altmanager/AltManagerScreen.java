@@ -1,7 +1,7 @@
 package me.kawaiizenbo.moonlight.ui.altmanager;
 
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 
 public class AltManagerScreen extends Screen 
@@ -14,9 +14,9 @@ public class AltManagerScreen extends Screen
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta)
+    public void render(DrawContext drawContext, int mouseX, int mouseY, float delta)
     {
-        renderBackgroundTexture(0);
+        renderBackgroundTexture(drawContext);
     }
     
 }

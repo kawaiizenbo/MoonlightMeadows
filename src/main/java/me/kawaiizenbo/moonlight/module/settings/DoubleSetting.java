@@ -2,7 +2,6 @@ package me.kawaiizenbo.moonlight.module.settings;
 
 import me.kawaiizenbo.moonlight.util.MathUtils;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 
 public class DoubleSetting extends Setting
@@ -23,10 +22,10 @@ public class DoubleSetting extends Setting
     }
 
     @Override
-    public void render(MatrixStack matrices, int x, int y, int mouseX, int mouseY) 
+    public void render(DrawContext drawContext, int x, int y, int mouseX, int mouseY) 
     {
-        super.render(matrices, x, y, mouseX, mouseY);
-        DrawContext.drawTextWithShadow(matrices, textRenderer, Text.literal(name), x+2, y+2, 0xFFFFFF);
+        super.render(drawContext, x, y, mouseX, mouseY);
+        drawContext.drawTextWithShadow(textRenderer, Text.literal(name), x+2, y+2, 0xFFFFFF);
         double diff = Math.min(100, Math.max(0, (mouseX - x)/1.9));
 
         if (sliding) 
@@ -43,11 +42,11 @@ public class DoubleSetting extends Setting
 		}
 
         String valueString = ""+MathUtils.round(value, roundingPlace);
-        DrawContext.drawTextWithShadow(matrices, textRenderer, Text.literal(valueString), (x+190)-textRenderer.getWidth(valueString), y+2, 0xFFFFFF);
-        DrawContext.fill(matrices, x+2, y+16, x+190, y+18, 0xFF666666);
+        drawContext.drawTextWithShadow(textRenderer, Text.literal(valueString), (x+190)-textRenderer.getWidth(valueString), y+2, 0xFFFFFF);
+        drawContext.fill(x+2, y+16, x+190, y+18, 0xFF666666);
         int scaledValue = (int)((value/max)*190);
-        DrawContext.fill(matrices, x+2, y+16, (x+2)+scaledValue, y+18, 0xFF55FFFF);
-        DrawContext.fill(matrices, x+2+(scaledValue-1), y+14, x+2+(scaledValue+1), y+20, 0xFFFFFFFF);
+        drawContext.fill(x+2, y+16, (x+2)+scaledValue, y+18, 0xFF55FFFF);
+        drawContext.fill(x+2+(scaledValue-1), y+14, x+2+(scaledValue+1), y+20, 0xFFFFFFFF);
     }
 
     @Override

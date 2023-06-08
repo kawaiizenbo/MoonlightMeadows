@@ -17,12 +17,12 @@ public class Step extends Module_
     @Override
     public void tick()
     {
-        mc.player.stepHeight = (float)stepHeight.value;
+        mc.player.setStepHeight((float)stepHeight.value);
     }
 
     @Override
     public void onDisable()
     {
-        mc.player.stepHeight = 0.5f;
+        mc.player.setStepHeight(0.5f);
     }
 }
