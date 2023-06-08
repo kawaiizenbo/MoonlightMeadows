@@ -10,7 +10,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import me.kawaiizenbo.moonlight.command.CommandManager;
 import me.kawaiizenbo.moonlight.util.ChatUtils;
 import net.minecraft.network.ClientConnection;
-import net.minecraft.network.Packet;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 
 @Mixin(ClientConnection.class)

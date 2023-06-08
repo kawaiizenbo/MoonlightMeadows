@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -43,7 +43,7 @@ public abstract class TitleScreenMixin extends Screen
         float g = this.doBackgroundFade ? MathHelper.clamp(f - 1.0F, 0.0F, 1.0F) : 1.0F;
         int l = MathHelper.ceil(g * 255.0F) << 24;
 
-        DrawableHelper.drawStringWithShadow(matrices, this.textRenderer, Moonlight.clientTag + " " + Moonlight.versionTag, 2, 2, 16777215 | l);
+        DrawContext.drawTextWithShadow(matrices, this.textRenderer, Moonlight.clientTag + " " + Moonlight.versionTag, 2, 2, 16777215 | l);
     }
 
     @Inject(at = @At("TAIL"), method = "init")

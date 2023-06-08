@@ -2,7 +2,7 @@ package me.kawaiizenbo.moonlight.module.settings;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.math.MatrixStack;
 
 public class Setting 
@@ -16,7 +16,7 @@ public class Setting
     { 
         this.x = x;
         this.y = y;
-        DrawableHelper.fill(matrices, x, y, x+192, y+height, hovered(mouseX, mouseY) ? 0xFF444444: 0xFF222222);
+        DrawContext.fill(matrices, x, y, x+192, y+height, hovered(mouseX, mouseY) ? 0xFF444444: 0xFF222222);
         
     }
 

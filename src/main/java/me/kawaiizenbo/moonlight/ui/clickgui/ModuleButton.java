@@ -3,7 +3,7 @@ package me.kawaiizenbo.moonlight.ui.clickgui;
 import me.kawaiizenbo.moonlight.module.Module_;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.math.MatrixStack;
 
 public class ModuleButton 
@@ -24,7 +24,7 @@ public class ModuleButton
     public void render(MatrixStack matrices, int mouseX, int mouseY) 
     {
 		TextRenderer textRenderer = mc.textRenderer;
-		DrawableHelper.fill(matrices, x, y, x + width, y + height, hovered(mouseX, mouseY) ? 0xFF333333 : 0xFF222222);
+		DrawContext.fill(matrices, x, y, x + width, y + height, hovered(mouseX, mouseY) ? 0xFF333333 : 0xFF222222);
 		textRenderer.draw(matrices, module.name, x+3, y+3, module.enabled ? 0x55FFFF : 0xFFFFFF);
 	}
 	
