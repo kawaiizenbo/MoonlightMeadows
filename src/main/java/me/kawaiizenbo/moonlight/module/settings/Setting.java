@@ -1,5 +1,7 @@
 package me.kawaiizenbo.moonlight.module.settings;
 
+import java.lang.reflect.Method;
+
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -7,6 +9,7 @@ import net.minecraft.client.gui.DrawContext;
 public class Setting 
 {
     public String name;
+    public Method onValueChanged;
     protected TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
     public int height = 24;
 

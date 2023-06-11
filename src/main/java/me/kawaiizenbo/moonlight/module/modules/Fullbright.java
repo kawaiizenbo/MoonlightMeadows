@@ -2,6 +2,7 @@ package me.kawaiizenbo.moonlight.module.modules;
 
 import me.kawaiizenbo.moonlight.module.Category;
 import me.kawaiizenbo.moonlight.module.Module_;
+import me.kawaiizenbo.moonlight.util.ISimpleOption;
 
 public class Fullbright extends Module_ 
 {
@@ -13,8 +14,7 @@ public class Fullbright extends Module_
     @Override
     public void onEnable()
     {
-        // i dont know why but this makes it darker than 1.0
-        mc.options.getGamma().setValue(100.0);
+        ((ISimpleOption<Double>)(Object)mc.options.getGamma()).setValueUnrestricted(100.0);
     }
 
     @Override

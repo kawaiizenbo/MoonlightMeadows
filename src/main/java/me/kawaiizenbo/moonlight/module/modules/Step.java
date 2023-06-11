@@ -6,7 +6,7 @@ import me.kawaiizenbo.moonlight.module.settings.DoubleSetting;
 
 public class Step extends Module_
 {
-    DoubleSetting stepHeight = new DoubleSetting("Height", 1, 1, 10, 0);
+    DoubleSetting stepHeight = new DoubleSetting("Height", 1, 1, 10, 0, null);
 
     public Step()
     {

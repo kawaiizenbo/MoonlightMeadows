@@ -12,7 +12,8 @@
     "ChatInputSuggestorMixin",
     "ClientConnectionMixin",
     "LivingEntityMixin",
-    "KeyboardMixin"
+    "KeyboardMixin",
+    "SimpleOptionMixin"
   ],
   "injectors": {
     "defaultRequire": 1

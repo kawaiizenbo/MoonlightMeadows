@@ -27,4 +27,9 @@ public class ColorUtils
     public static String strikethrough = "\247m";
     public static String obfuscated = "\247k";
 	public static String reset = "\247r";
+
+    public static int rgbaToInt(int r, int g, int b, int a)
+    {
+        return ((a&0x0ff)<<24)|((r&0x0ff)<<16)|((g&0x0ff)<<8)|(b&0x0ff);
+    }
 }

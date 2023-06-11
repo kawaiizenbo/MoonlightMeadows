@@ -1,5 +1,8 @@
 package me.kawaiizenbo.moonlight.module.settings;
 
+import java.lang.reflect.Method;
+
+import me.kawaiizenbo.moonlight.util.ColorUtils;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
 
@@ -11,11 +14,12 @@ public class ColorSetting extends Setting
     public int b;
     
 
-    public ColorSetting(String name, int value)
+    public ColorSetting(String name, int value, Method onValueChanged)
     {
         this.name = name;
         this.value = value;
         this.height = 64;
+        this.onValueChanged = onValueChanged;
         this.r = (value >> 16) & 0xFF;
         this.g = (value >> 8) & 0xFF;
         this.b = value & 0xFF;
@@ -26,12 +30,12 @@ public class ColorSetting extends Setting
     {
         super.render(drawContext, x, y, mouseX, mouseY);
         drawContext.drawTextWithShadow(textRenderer, Text.literal(name), x+2, y+2, 0xFFFFFF);
-        int redDisplayStartColor = ((255&0x0ff)<<24)|((0&0x0ff)<<16)|((g&0x0ff)<<8)|(b&0x0ff);
-        int redDisplayEndColor = ((255&0x0ff)<<24)|((255&0x0ff)<<16)|((g&0x0ff)<<8)|(b&0x0ff);
-        int greenDisplayStartColor = ((255&0x0ff)<<24)|((r&0x0ff)<<16)|((0&0x0ff)<<8)|(b&0x0ff);
-        int greenDisplayEndColor = ((255&0x0ff)<<24)|((r&0x0ff)<<16)|((255&0x0ff)<<8)|(b&0x0ff);
-        int blueDisplayStartColor = ((255&0x0ff)<<24)|((r&0x0ff)<<16)|((g&0x0ff)<<8)|(0&0x0ff);
-        int blueDisplayEndColor = ((255&0x0ff)<<24)|((r&0x0ff)<<16)|((g&0x0ff)<<8)|(255&0x0ff);
+        int redDisplayStartColor = ColorUtils.rgbaToInt(0, g, b, 255);
+        int redDisplayEndColor = ColorUtils.rgbaToInt(255, g, b, 255);
+        int greenDisplayStartColor = ColorUtils.rgbaToInt(r, 0, b, 255);
+        int greenDisplayEndColor = ColorUtils.rgbaToInt(r, 255, b, 255);
+        int blueDisplayStartColor = ColorUtils.rgbaToInt(r, g, 0, 255);
+        int blueDisplayEndColor = ColorUtils.rgbaToInt(r, g, 255, 255);
         drawContext.fillGradient(x+80, y+2, x+92, y+62, redDisplayEndColor, redDisplayStartColor, 0);
         drawContext.fillGradient(x+95, y+2, x+107, y+62, greenDisplayEndColor, greenDisplayStartColor, 0);
         drawContext.fillGradient(x+110, y+2, x+122, y+62, blueDisplayEndColor, blueDisplayStartColor, 0);
