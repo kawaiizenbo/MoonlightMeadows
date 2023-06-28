@@ -16,11 +16,11 @@ public class HUD
     public static HUD INSTANCE = new HUD();
 	private MinecraftClient mc = MinecraftClient.getInstance();
 	TextRenderer textRenderer = mc.textRenderer;
-    public int hudColor = ColorUtils.rgbaToInt(
+    public int hudColor = 0xFF00FFFF; /*ColorUtils.rgbaToInt(
         (int)((HUDModule)ModuleManager.INSTANCE.getModuleByName("HUD")).r.value,
         (int)((HUDModule)ModuleManager.INSTANCE.getModuleByName("HUD")).g.value,
         (int)((HUDModule)ModuleManager.INSTANCE.getModuleByName("HUD")).b.value,
-        255 );
+        255 );*/
 
     public void renderHUD(DrawContext drawContext, int scaledWidth, int scaledHeight)
     {
