@@ -16,7 +16,7 @@ import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 @Mixin(ClientConnection.class)
 public class ClientConnectionMixin 
 {
-    @Inject(method = "send(Lnet/minecraft/network/Packet;)V", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "send(Lnet/minecraft/network/packet/Packet;)V", at = @At("HEAD"), cancellable = true)
     public void send(Packet<?> packet, CallbackInfo ci) 
     {
     	// Call commands if the prefix is sent
