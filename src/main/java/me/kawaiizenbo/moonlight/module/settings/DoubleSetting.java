@@ -1,9 +1,6 @@
 package me.kawaiizenbo.moonlight.module.settings;
 
-import java.lang.reflect.Method;
-
 import me.kawaiizenbo.moonlight.util.MathUtils;
-import me.kawaiizenbo.moonlight.util.ReflectionUtils;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
 
@@ -15,11 +12,10 @@ public class DoubleSetting extends Setting
 
     boolean sliding = false;
 
-    public DoubleSetting(String name, double value, double min, double max, int roundingPlace, Method onValueChanged)
+    public DoubleSetting(String name, double value, double min, double max, int roundingPlace)
     {
         this.name = name;
         this.value = value;
-        this.onValueChanged = onValueChanged;
         this.min = min;
         this.max = max;
         this.roundingPlace = roundingPlace;
@@ -66,7 +62,6 @@ public class DoubleSetting extends Setting
 	public void mouseReleased(double mouseX, double mouseY, int button) 
     {
 		sliding = false;
-        ReflectionUtils.tryCallMethod(onValueChanged, new Object[0]);
 	}
     
 }

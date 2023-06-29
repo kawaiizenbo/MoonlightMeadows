@@ -2,8 +2,12 @@ package me.kawaiizenbo.moonlight.module;
 
 import java.util.ArrayList;
 
+import me.kawaiizenbo.moonlight.module.settings.BooleanSetting;
 import me.kawaiizenbo.moonlight.module.settings.Setting;
+import me.kawaiizenbo.moonlight.ui.ModulesListOverlay;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.MovementType;
+import net.minecraft.util.math.Vec3d;
 
 public abstract class Module_ 
 {
@@ -15,6 +19,8 @@ public abstract class Module_
     public ArrayList<Setting> settings;
     public int keyBind;
 
+    public BooleanSetting showInModulesList = new BooleanSetting("Show in Modules List", true);
+
     public Module_(String name, String description, Category category)
     {
         this.name = name;
@@ -23,8 +29,9 @@ public abstract class Module_
         settings = new ArrayList<>();
     }
 
-    public void onEnable() {}
-    public void onDisable() {}
+    public void onEnable() { ModulesListOverlay.INSTANCE.update(); }
+    public void onDisable() { ModulesListOverlay.INSTANCE.update(); }
+    public void onMotion(MovementType type, Vec3d movement) {}
     public void tick() {}
 
     public void toggle() 

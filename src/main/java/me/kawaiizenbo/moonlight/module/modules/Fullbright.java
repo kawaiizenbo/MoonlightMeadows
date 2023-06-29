@@ -14,12 +14,14 @@ public class Fullbright extends Module_
     @Override
     public void onEnable()
     {
+        super.onEnable();
         ((ISimpleOption<Double>)(Object)mc.options.getGamma()).setValueUnrestricted(100.0);
     }
 
     @Override
     public void onDisable()
     {
+        super.onDisable();
         mc.options.getGamma().setValue(1.0);
     }
 }

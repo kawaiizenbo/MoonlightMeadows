@@ -20,6 +20,7 @@ public class Fly extends Module_
     @Override
     public void onDisable()
     {
+        super.onDisable();
         mc.player.getAbilities().flying = false;
     }
 }

@@ -11,32 +11,39 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.util.math.Vec3d;
 
-public class HUD 
+public class HUDOverlay 
 {
-    public static HUD INSTANCE = new HUD();
+    public static HUDOverlay INSTANCE = new HUDOverlay();
 	private MinecraftClient mc = MinecraftClient.getInstance();
 	TextRenderer textRenderer = mc.textRenderer;
-    public int hudColor = 0xFF00FFFF; /*ColorUtils.rgbaToInt(
+    public boolean showClientTag = ((HUDModule)ModuleManager.INSTANCE.getModuleByName("HUD")).clientTag.value;
+    public int hudColor = ColorUtils.rgbaToInt(
         (int)((HUDModule)ModuleManager.INSTANCE.getModuleByName("HUD")).r.value,
         (int)((HUDModule)ModuleManager.INSTANCE.getModuleByName("HUD")).g.value,
         (int)((HUDModule)ModuleManager.INSTANCE.getModuleByName("HUD")).b.value,
-        255 );*/
+        255 );
 
-    public void renderHUD(DrawContext drawContext, int scaledWidth, int scaledHeight)
+    public void render(DrawContext drawContext, int scaledWidth, int scaledHeight)
     {
         // do not draw if F3 enabled
         if (mc.options.debugEnabled) return;
 
         // draw stats
-        drawContext.drawTextWithShadow(textRenderer, Moonlight.clientTag + " " + Moonlight.versionTag, 2, 2, 16777215);
-		drawContext.drawTextWithShadow(textRenderer, "FPS: " + ColorUtils.gray + mc.fpsDebugString.split(" ")[0], 2, 12, hudColor);
-		drawContext.drawTextWithShadow(textRenderer, "Ping: " + ColorUtils.gray + (mc.getNetworkHandler().getPlayerListEntry(mc.player.getUuid()) == null ? 0 : mc.getNetworkHandler().getPlayerListEntry(mc.player.getUuid()).getLatency()), 2, 22, hudColor);
+		drawContext.drawTextWithShadow(textRenderer, "FPS: " + ColorUtils.gray + mc.fpsDebugString.split(" ")[0], 2, 2, hudColor);
+		drawContext.drawTextWithShadow(textRenderer, "Ping: " + ColorUtils.gray + (mc.getNetworkHandler().getPlayerListEntry(mc.player.getUuid()) == null ? 0 : mc.getNetworkHandler().getPlayerListEntry(mc.player.getUuid()).getLatency()), 2, 12, hudColor);
 		drawContext.drawTextWithShadow(textRenderer, "Meters/s: " + ColorUtils.gray + MathUtils.round(moveSpeed(), 2), 2, scaledHeight - 20, hudColor);
 
         // draw coordinates
         drawContext.drawTextWithShadow(textRenderer, "X: " + ColorUtils.gray + MathUtils.round(mc.player.getX(), 1) + 
             ColorUtils.reset + " Y: " + ColorUtils.gray + MathUtils.round(mc.player.getY(), 1) + 
             ColorUtils.reset + " Z: " + ColorUtils.gray + MathUtils.round(mc.player.getZ(), 1), 2, scaledHeight - 10, hudColor);
+
+        // draw client tag (if enabled)
+        if (showClientTag)
+        {
+            drawContext.drawTextWithShadow(textRenderer, Moonlight.clientTag + " " + Moonlight.versionTag, 
+            scaledWidth - textRenderer.getWidth(Moonlight.clientTag + " " + Moonlight.versionTag) - 2, scaledHeight - 10, 16777215);
+        }
     }
 
     private double moveSpeed() 

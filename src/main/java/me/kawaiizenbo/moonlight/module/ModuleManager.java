@@ -16,7 +16,9 @@ public class ModuleManager
 			new NoFall(),
 			new HUDModule(),
 			new Step(),
-			new Fullbright()
+			new Fullbright(),
+			new Speed(),
+			new ModulesList()
 		);
     }
 

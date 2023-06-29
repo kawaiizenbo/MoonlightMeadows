@@ -1,8 +1,5 @@
 package me.kawaiizenbo.moonlight.module.settings;
 
-import java.lang.reflect.Method;
-
-import me.kawaiizenbo.moonlight.util.ReflectionUtils;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
 
@@ -10,11 +7,10 @@ public class BooleanSetting extends Setting
 {
     public boolean value;
 
-    public BooleanSetting(String name, boolean value, Method onValueChanged)
+    public BooleanSetting(String name, boolean value)
     {
         this.name = name;
         this.value = value;
-        this.onValueChanged = onValueChanged;
     }
 
     @Override
@@ -33,7 +29,6 @@ public class BooleanSetting extends Setting
 		if (hovered((int)mouseX, (int)mouseY) && button == 0) 
         {
 			this.value = !value;
-            ReflectionUtils.tryCallMethod(onValueChanged, new Object[0]);
 		}
 	}
 }

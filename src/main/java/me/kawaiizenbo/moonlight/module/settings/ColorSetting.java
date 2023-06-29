@@ -1,7 +1,5 @@
 package me.kawaiizenbo.moonlight.module.settings;
 
-import java.lang.reflect.Method;
-
 import me.kawaiizenbo.moonlight.util.ColorUtils;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
@@ -14,12 +12,11 @@ public class ColorSetting extends Setting
     public int b;
     
 
-    public ColorSetting(String name, int value, Method onValueChanged)
+    public ColorSetting(String name, int value)
     {
         this.name = name;
         this.value = value;
         this.height = 64;
-        this.onValueChanged = onValueChanged;
         this.r = (value >> 16) & 0xFF;
         this.g = (value >> 8) & 0xFF;
         this.b = value & 0xFF;

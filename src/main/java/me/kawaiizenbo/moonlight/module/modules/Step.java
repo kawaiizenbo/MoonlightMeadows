@@ -6,7 +6,7 @@ import me.kawaiizenbo.moonlight.module.settings.DoubleSetting;
 
 public class Step extends Module_
 {
-    DoubleSetting stepHeight = new DoubleSetting("Height", 1, 1, 10, 0, null);
+    DoubleSetting stepHeight = new DoubleSetting("Height", 1, 1, 10, 0);
 
     public Step()
     {
@@ -23,6 +23,7 @@ public class Step extends Module_
     @Override
     public void onDisable()
     {
+        super.onDisable();
         mc.player.setStepHeight(0.5f);
     }
 }
