@@ -3,56 +3,49 @@ package me.kawaiizenbo.moonlight.ui.clickgui;
 import java.util.ArrayList;
 
 import me.kawaiizenbo.moonlight.module.Category;
-import me.kawaiizenbo.moonlight.module.ModuleManager;
-import me.kawaiizenbo.moonlight.module.Module_;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
-public class ClickGUIScreen extends Screen 
+public class ClickGUIScreen extends Screen
 {
-	public static ClickGUIScreen INSTANCE = new ClickGUIScreen();
-	public static ArrayList<ModuleButton> moduleButtons;
+    public static ClickGUIScreen INSTANCE = new ClickGUIScreen();
+    public static ArrayList<CategoryPane> categoryPanes;
 	
 	public ClickGUIScreen() 
 	{
 		super(Text.literal("ClickGUI"));
-		moduleButtons = new ArrayList<>();
-		int yOffset;
+		int xOffset = 4;
+		int yOffset = 4;
+		categoryPanes = new ArrayList<CategoryPane>();
 		for (Category category : Category.values())
 		{ 
-			yOffset = 25;
-			for (Module_ module : ModuleManager.INSTANCE.getModulesByCategory(category))
+			if (xOffset > 400)
 			{
-				moduleButtons.add(new ModuleButton(module, 9+(module.category.ordinal()*70), yOffset));
-				yOffset += 14;
+				xOffset = 4;
+				yOffset = 128;
 			}
+			categoryPanes.add(new CategoryPane(category, xOffset, yOffset));
+			xOffset += 100;
 		}
-		
 	}
 
 	@Override
 	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) 
 	{
 		this.renderBackground(drawContext);
-		int categoryLabelXOffset = 10;
-		for (Category category : Category.values())
+		for (CategoryPane category : categoryPanes)
 		{
-			drawContext.drawText(textRenderer, category.name, categoryLabelXOffset, 10, 0xFFFFFF, false);
-			categoryLabelXOffset += 70;
-		}
-		for (ModuleButton moduleButton : moduleButtons)
-		{
-			moduleButton.render(drawContext, mouseX, mouseY);
+			category.render(drawContext, mouseX, mouseY, delta);
 		}
 	}
 
 	@Override
 	public boolean mouseClicked(double mouseX, double mouseY, int button) 
 	{
-		for (ModuleButton modButton : moduleButtons) 
+		for (CategoryPane category : categoryPanes)
 		{
-			modButton.mouseClicked((int) mouseX, (int) mouseY, button);
+			category.mouseClicked((int) mouseX, (int) mouseY, button);
 		}
 		return super.mouseClicked(mouseX, mouseY, button);
 	}

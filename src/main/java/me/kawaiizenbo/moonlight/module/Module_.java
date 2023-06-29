@@ -27,6 +27,7 @@ public abstract class Module_
         this.description = description;
         this.category = category;
         settings = new ArrayList<>();
+        settings.add(showInModulesList);
     }
 
     public void onEnable() { ModulesListOverlay.INSTANCE.update(); }

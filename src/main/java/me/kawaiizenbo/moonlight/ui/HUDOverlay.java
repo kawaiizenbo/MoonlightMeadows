@@ -29,14 +29,16 @@ public class HUDOverlay
         if (mc.options.debugEnabled) return;
 
         // draw stats
-		drawContext.drawTextWithShadow(textRenderer, "FPS: " + ColorUtils.gray + mc.fpsDebugString.split(" ")[0], 2, 2, hudColor);
-		drawContext.drawTextWithShadow(textRenderer, "Ping: " + ColorUtils.gray + (mc.getNetworkHandler().getPlayerListEntry(mc.player.getUuid()) == null ? 0 : mc.getNetworkHandler().getPlayerListEntry(mc.player.getUuid()).getLatency()), 2, 12, hudColor);
-		drawContext.drawTextWithShadow(textRenderer, "Meters/s: " + ColorUtils.gray + MathUtils.round(moveSpeed(), 2), 2, scaledHeight - 20, hudColor);
+		drawContext.drawTextWithShadow(textRenderer, "FPS: " + ColorUtils.gray + mc.fpsDebugString.split(" ")[0], 2, 2, Moonlight.uiColorA);
+		drawContext.drawTextWithShadow(textRenderer, "Ping: " + ColorUtils.gray + (mc.getNetworkHandler().getPlayerListEntry(mc.player.getUuid()) == null ? 0 : mc.getNetworkHandler().getPlayerListEntry(mc.player.getUuid()).getLatency()), 2, 12, Moonlight.uiColorA);
+		drawContext.drawTextWithShadow(textRenderer, "Meters/s: " + ColorUtils.gray + MathUtils.round(moveSpeed(), 2), 2, scaledHeight - 20, Moonlight.uiColorA);
 
         // draw coordinates
-        drawContext.drawTextWithShadow(textRenderer, "X: " + ColorUtils.gray + MathUtils.round(mc.player.getX(), 1) + 
-            ColorUtils.reset + " Y: " + ColorUtils.gray + MathUtils.round(mc.player.getY(), 1) + 
-            ColorUtils.reset + " Z: " + ColorUtils.gray + MathUtils.round(mc.player.getZ(), 1), 2, scaledHeight - 10, hudColor);
+        drawContext.drawTextWithShadow(textRenderer, 
+            "X: " + ColorUtils.gray + MathUtils.round(mc.player.getX(), 1) + ColorUtils.reset + 
+            " Y: " + ColorUtils.gray + MathUtils.round(mc.player.getY(), 1) + ColorUtils.reset + 
+            " Z: " + ColorUtils.gray + MathUtils.round(mc.player.getZ(), 1), 2, scaledHeight - 10, Moonlight.uiColorA
+        );
 
         // draw client tag (if enabled)
         if (showClientTag)

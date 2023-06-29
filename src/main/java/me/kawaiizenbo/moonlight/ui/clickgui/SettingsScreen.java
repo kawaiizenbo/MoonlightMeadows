@@ -34,7 +34,6 @@ public class SettingsScreen extends Screen
 			setting.render(drawContext, (width/2)-96, yOffset, mouseX, mouseY);
 			yOffset += setting.height + 1;
 		}
-        // add keybind setting here eventually
 	}
     
     @Override

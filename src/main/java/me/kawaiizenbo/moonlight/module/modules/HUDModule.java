@@ -1,5 +1,6 @@
 package me.kawaiizenbo.moonlight.module.modules;
 
+import me.kawaiizenbo.moonlight.Moonlight;
 import me.kawaiizenbo.moonlight.module.Category;
 import me.kawaiizenbo.moonlight.module.Module_;
 import me.kawaiizenbo.moonlight.module.settings.BooleanSetting;
@@ -33,12 +34,18 @@ public class HUDModule extends Module_
     {
         super.onEnable();
         HUDOverlay.INSTANCE.showClientTag = clientTag.value;
-        HUDOverlay.INSTANCE.hudColor = 
+        Moonlight.uiColorA = 
         ColorUtils.rgbaToInt(
             (int)r.value,
             (int)g.value,
             (int)b.value,
             255 
+        );
+        Moonlight.uiColor = 
+        ColorUtils.rgbToInt(
+            (int)r.value,
+            (int)g.value,
+            (int)b.value
         );
     }
 }
