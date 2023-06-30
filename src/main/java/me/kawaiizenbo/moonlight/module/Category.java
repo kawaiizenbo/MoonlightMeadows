@@ -6,8 +6,8 @@ public enum Category
 	MOVEMENT("Movement", 0xFFFF55FF),
 	RENDER("Render", 0xFF5555FF),
 	WORLD("World", 0xFF55FF55), 
-	PLAYER("Player", 0xFFFFFFFF),
-	CHAT("Chat", 0xFFFFFF55);
+	PLAYER("Player", 0xFF00AAAA),
+	CHAT("Chat", 0xFFFFAA00);
 	
 	public String name;
 	public int color;

@@ -1,20 +1,16 @@
 package me.kawaiizenbo.moonlight.module.settings;
 
-import java.lang.reflect.Method;
-
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 
 public class Setting 
 {
     public String name;
-    public Method onValueChanged;
-    protected TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
     public int height = 24;
+    public Object value;
 
     int x = 0, y = 0;
-    public void render(DrawContext drawContext, int x, int y, int mouseX, int mouseY)
+    public void render(DrawContext drawContext, int x, int y, int mouseX, int mouseY, TextRenderer textRenderer)
     { 
         this.x = x;
         this.y = y;

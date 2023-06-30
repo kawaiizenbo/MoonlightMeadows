@@ -10,20 +10,18 @@ public class ModuleButton
 {
     public Module_ module;
 	public int x, y, width, height = 0;
-	private MinecraftClient mc = MinecraftClient.getInstance();
-	private TextRenderer textRenderer = mc.textRenderer;
 	
-	public ModuleButton(Module_ module, int initialX, int initialY) 
+	public ModuleButton(Module_ module) 
     {
 		this.module = module;
-		this.x = initialX;
-		this.y = initialY;
 		this.width = 92;
 		this.height = 12;
 	}
 
-    public void render(DrawContext drawContext, int mouseX, int mouseY) 
+    public void render(DrawContext drawContext, int mouseX, int mouseY, int x, int y, TextRenderer textRenderer) 
     {
+		this.x = x;
+		this.y = y;
 		drawContext.fill(x, y, x + width, y + height, hovered(mouseX, mouseY) ? 0xFF333333 : 0xFF222222);
 		drawContext.drawText(textRenderer, module.name, x+2, y+2, module.enabled ? Moonlight.uiColor : 0xFFFFFF, false);
 	}

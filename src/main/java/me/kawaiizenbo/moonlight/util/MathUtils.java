@@ -17,6 +17,19 @@ public class MathUtils
         return bd.doubleValue();
     }
 
+    public static int d2iSafe(Object value)
+    {
+        int out = 0;
+        try
+        {
+            out = (int)Math.floor((double)value);
+        } catch (Exception e)
+        {
+            out = (int)value;
+        }
+        return out;
+    }
+
     public static double length2D(Vec3d vec3d) 
     {
         return MathHelper.sqrt((float)(vec3d.x * vec3d.x + vec3d.z * vec3d.z));

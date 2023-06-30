@@ -13,7 +13,10 @@ public class SettingsScreen extends Screen
     private Module_ module;
     private TextButton backButton;
 
-    protected SettingsScreen(Module_ module) 
+    boolean dragging = false;
+    int startX, startY, x = 4, y = 4, windowWidth = 224, windowHeight = 192;
+
+    public SettingsScreen(Module_ module) 
     {
         super(Text.literal("Settings"));
         this.module = module;
@@ -23,17 +26,31 @@ public class SettingsScreen extends Screen
 	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) 
 	{
         this.renderBackground(drawContext);
-        drawContext.fill((width/2)-112, (height/2)-96, (width/2)+112, (height/2)+96, 0xFF222222);
-        drawContext.drawCenteredTextWithShadow(textRenderer, module.name, width/2, (height/2)-88, 0xFFFFFF);
-        drawContext.drawTextWithShadow(textRenderer, Text.literal(module.description), (width/2)-104, (height/2)-72, 0xFFFFFF);
-        backButton = new TextButton(ColorUtils.underline + "< Back", (width/2)-104, (height/2)-88, 0xFFFFFF);
+
+        // move window if dragging
+        if (dragging)
+        {
+            x = mouseX - startX;
+            y = mouseY - startY;
+        }
+        drawContext.fill(x, y, x+windowWidth, y+windowHeight, 0xFF222222);
+        drawContext.fill(x, y, x+windowWidth, y+16, module.category.color);
+        drawContext.fill(x+2, y+2, x+(windowWidth-2), y+14, 0xFF222222);
+        drawContext.drawCenteredTextWithShadow(textRenderer, "Module Settings: "+module.name, x+(windowWidth/2), y+4, 0xFFFFFF);
+        drawContext.drawText(textRenderer, module.description, x+8, y+24, 0xFFFFFF, true);
+        backButton = new TextButton(ColorUtils.underline + "< Back", x+4, y+4, 0xFFFFFF);
         backButton.render(drawContext, textRenderer, mouseX, mouseY);
-		int yOffset = (height/2)-56;
+		int yOffset = y+40;
 		for (Setting setting : module.settings)
 		{
-			setting.render(drawContext, (width/2)-96, yOffset, mouseX, mouseY);
+			setting.render(drawContext, x+16, yOffset, mouseX, mouseY, textRenderer);
 			yOffset += setting.height + 1;
 		}
+	}
+
+    public boolean barHovered(int mouseX, int mouseY) 
+    {
+		return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + 16;
 	}
     
     @Override
@@ -45,6 +62,12 @@ public class SettingsScreen extends Screen
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button)
     {
+        if (barHovered((int)mouseX, (int)mouseY))
+        {
+            startX = (int)mouseX-x;
+            startY = (int)mouseY-y;
+            dragging = true;
+        }
         backButton.mouseClicked((int)mouseX, (int)mouseY);
         for (Setting setting : module.settings)
         {
@@ -56,6 +79,7 @@ public class SettingsScreen extends Screen
     @Override
     public boolean mouseReleased(double mouseX, double mouseY, int button)
     {
+        dragging = false;
         for (Setting setting : module.settings)
         {
             setting.mouseReleased(mouseX, mouseY, button);

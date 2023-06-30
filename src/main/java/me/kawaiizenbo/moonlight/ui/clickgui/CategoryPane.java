@@ -5,56 +5,57 @@ import java.util.ArrayList;
 import me.kawaiizenbo.moonlight.module.Category;
 import me.kawaiizenbo.moonlight.module.ModuleManager;
 import me.kawaiizenbo.moonlight.module.Module_;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 
 public class CategoryPane 
 {
-    private MinecraftClient mc = MinecraftClient.getInstance();
-	private TextRenderer textRenderer = mc.textRenderer;
-    
     public Category category;
-    public int x;
-    public int y;
-    private int height;
-    private int width = 96;
-    private boolean collapsed = false;
-    private ArrayList<ModuleButton> moduleButtons;
+    public int x, y, height, width = 96;
+    int startX, startY;
+    boolean dragging = false;
+    public boolean collapsed = false;
+    ArrayList<ModuleButton> moduleButtons;
 
-    public CategoryPane(Category category, int initialX, int initialY)
+    public CategoryPane(Category category, int initialX, int initialY, boolean collapsed)
     {
         this.category = category;
         this.x = initialX;
         this.y = initialY;
-        int buttonYOffset = y+16;
+        this.collapsed = collapsed;
         moduleButtons = new ArrayList<ModuleButton>();
         for (Module_ m : ModuleManager.INSTANCE.getModulesByCategory(category))
         {
-            moduleButtons.add(new ModuleButton(m, x+2, buttonYOffset));
-            buttonYOffset += 12;
+            moduleButtons.add(new ModuleButton(m));
         }
         if (moduleButtons.size() == 0) collapsed = true;
         height = (moduleButtons.size()*12) + 18;
     }
 
-    public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) 
+    public void render(DrawContext drawContext, int mouseX, int mouseY, float delta, TextRenderer textRenderer) 
     {
+        if (dragging)
+        {
+            x = mouseX - startX;
+            y = mouseY - startY;
+        }
         drawContext.fill(x, y, x+width, collapsed ? y+16 : y+height, category.color);
         drawContext.fill(x+2, y+2, x+(width-2), y+14, hovered(mouseX, mouseY) ? 0xFF333333 : 0xFF222222);
         drawContext.drawText(textRenderer, category.name, x+4, y+4, 0xFFFFFFFF, false);
         if (!collapsed)
         {
+            int buttonYOffset = y+16;
             for (ModuleButton m : moduleButtons)
             {
-                m.render(drawContext, mouseX, mouseY);
+                m.render(drawContext, mouseX, mouseY, x+2, buttonYOffset, textRenderer);
+                buttonYOffset += 12;
             }
         }
     }
 
     public boolean hovered(int mouseX, int mouseY) 
     {
-		return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
+		return mouseX >= x+2 && mouseX <= x+(width-2) && mouseY >= y+2 && mouseY <= y+14;
 	}
 
     public void mouseClicked(int mouseX, int mouseY, int button) 
@@ -63,6 +64,17 @@ public class CategoryPane
 		{
 			if (moduleButton.mouseClicked(mouseX, mouseY, button)) return;
 		}
-        if (hovered(mouseX, mouseY)) collapsed = !collapsed;
+        if (hovered(mouseX, mouseY) && button == 1) collapsed = !collapsed;
+        else if (hovered(mouseX, mouseY) && button == 0)
+        {
+            startX = (int)mouseX-x;
+            startY = (int)mouseY-y;
+            dragging = true;
+        }
+	}
+
+    public void mouseReleased(int mouseX, int mouseY, int button) 
+	{
+		dragging = false;
 	}
 }

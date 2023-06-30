@@ -17,8 +17,7 @@ public abstract class Module_
     public Category category;
     public boolean enabled;
     public ArrayList<Setting> settings;
-    public int keyBind;
-
+    
     public BooleanSetting showInModulesList = new BooleanSetting("Show in Modules List", true);
 
     public Module_(String name, String description, Category category)

@@ -1,8 +1,11 @@
 package me.kawaiizenbo.moonlight.ui.clickgui;
 
 import java.util.ArrayList;
+import java.util.Map;
 
+import me.kawaiizenbo.moonlight.Moonlight;
 import me.kawaiizenbo.moonlight.module.Category;
+import me.kawaiizenbo.moonlight.util.MathUtils;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
@@ -10,23 +13,19 @@ import net.minecraft.text.Text;
 public class ClickGUIScreen extends Screen
 {
     public static ClickGUIScreen INSTANCE = new ClickGUIScreen();
-    public static ArrayList<CategoryPane> categoryPanes;
+    public ArrayList<CategoryPane> categoryPanes;
 	
 	public ClickGUIScreen() 
 	{
 		super(Text.literal("ClickGUI"));
-		int xOffset = 4;
-		int yOffset = 4;
 		categoryPanes = new ArrayList<CategoryPane>();
+		Map<String, Object> panePos = ((Map<String, Object>)Moonlight.INSTANCE.CONFIG.config.get("panes"));
 		for (Category category : Category.values())
 		{ 
-			if (xOffset > 400)
-			{
-				xOffset = 4;
-				yOffset = 128;
-			}
-			categoryPanes.add(new CategoryPane(category, xOffset, yOffset));
-			xOffset += 100;
+			int xOffset = MathUtils.d2iSafe(((Map<String, Object>)panePos.get(category.name)).get("x"));
+			int yOffset = MathUtils.d2iSafe(((Map<String, Object>)panePos.get(category.name)).get("y"));
+			boolean collapsed = (boolean)((Map<String, Object>)panePos.get(category.name)).get("collapsed");
+			categoryPanes.add(new CategoryPane(category, xOffset, yOffset, collapsed));
 		}
 	}
 
@@ -36,7 +35,7 @@ public class ClickGUIScreen extends Screen
 		this.renderBackground(drawContext);
 		for (CategoryPane category : categoryPanes)
 		{
-			category.render(drawContext, mouseX, mouseY, delta);
+			category.render(drawContext, mouseX, mouseY, delta, textRenderer);
 		}
 	}
 
@@ -48,6 +47,16 @@ public class ClickGUIScreen extends Screen
 			category.mouseClicked((int) mouseX, (int) mouseY, button);
 		}
 		return super.mouseClicked(mouseX, mouseY, button);
+	}
+
+	@Override
+	public boolean mouseReleased(double mouseX, double mouseY, int button) 
+	{
+		for (CategoryPane category : categoryPanes)
+		{
+			category.mouseReleased((int) mouseX, (int) mouseY, button);
+		}
+		return super.mouseReleased(mouseX, mouseY, button);
 	}
 	
 	@Override

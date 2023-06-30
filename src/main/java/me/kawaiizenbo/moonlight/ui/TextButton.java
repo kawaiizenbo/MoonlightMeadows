@@ -22,7 +22,7 @@ public class TextButton
     public void render(DrawContext drawContext, TextRenderer textRenderer, int mouseX, int mouseY)
     {
         width = textRenderer.getWidth(text);
-        drawContext.fill(x-1, y-1, x + width + 1, y + 10, hovered(mouseX, mouseY) ? 0xFF444444 : 0xFF222222);
+        drawContext.fill(x-1, y-1, x + width + 1, y + 10, hovered(mouseX, mouseY) ? 0x55FFFFFF : 0);
         drawContext.drawText(textRenderer, Text.literal(text), x, y, color, true);
     }
 

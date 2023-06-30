@@ -11,9 +11,9 @@
     "InGameHudMixin",
     "ChatInputSuggestorMixin",
     "ClientConnectionMixin",
-    "LivingEntityMixin",
     "KeyboardMixin",
-    "SimpleOptionMixin"
+    "SimpleOptionMixin",
+    "MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

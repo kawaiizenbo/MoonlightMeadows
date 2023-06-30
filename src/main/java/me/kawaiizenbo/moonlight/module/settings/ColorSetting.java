@@ -1,6 +1,7 @@
 package me.kawaiizenbo.moonlight.module.settings;
 
 import me.kawaiizenbo.moonlight.util.ColorUtils;
+import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
 
@@ -23,9 +24,9 @@ public class ColorSetting extends Setting
     }
 
     @Override
-    public void render(DrawContext drawContext, int x, int y, int mouseX, int mouseY) 
+    public void render(DrawContext drawContext, int x, int y, int mouseX, int mouseY, TextRenderer textRenderer) 
     {
-        super.render(drawContext, x, y, mouseX, mouseY);
+        super.render(drawContext, x, y, mouseX, mouseY, textRenderer);
         drawContext.drawTextWithShadow(textRenderer, Text.literal(name), x+2, y+2, 0xFFFFFF);
         int redDisplayStartColor = ColorUtils.rgbaToInt(0, g, b, 255);
         int redDisplayEndColor = ColorUtils.rgbaToInt(255, g, b, 255);

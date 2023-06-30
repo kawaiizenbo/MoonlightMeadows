@@ -1,6 +1,7 @@
 package me.kawaiizenbo.moonlight.module.settings;
 
 import me.kawaiizenbo.moonlight.util.MathUtils;
+import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
 
@@ -22,9 +23,9 @@ public class DoubleSetting extends Setting
     }
 
     @Override
-    public void render(DrawContext drawContext, int x, int y, int mouseX, int mouseY) 
+    public void render(DrawContext drawContext, int x, int y, int mouseX, int mouseY, TextRenderer textRenderer) 
     {
-        super.render(drawContext, x, y, mouseX, mouseY);
+        super.render(drawContext, x, y, mouseX, mouseY, textRenderer);
         drawContext.drawTextWithShadow(textRenderer, Text.literal(name), x+2, y+2, 0xFFFFFF);
         double diff = Math.min(100, Math.max(0, (mouseX - x)/1.9));
 

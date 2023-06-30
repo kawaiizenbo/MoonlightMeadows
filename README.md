@@ -1,7 +1,7 @@
-# Moonlight Meadows Utility Mod for Minecraft 1.20
+# Moonlight Meadows Utility Mod for Minecraft 1.20.1
 
 Please use this mod at your own risk  
-Requires Fabric API and Minecraft 1.20
+Requires Fabric API and Minecraft 1.20.1
 
 Default ClickGUI Key is Right Alt
 
