@@ -24,7 +24,7 @@ public class HUDOverlay
     public void render(DrawContext drawContext, int scaledWidth, int scaledHeight)
     {
         // do not draw if F3 enabled
-        if (mc.options.debugEnabled) return;
+        if (mc.getDebugHud().shouldShowDebugHud()) return;
 
         // draw stats
 		drawContext.drawTextWithShadow(mc.textRenderer, "FPS: " + ColorUtils.gray + mc.fpsDebugString.split(" ")[0], 2, 2, Moonlight.uiColorA);

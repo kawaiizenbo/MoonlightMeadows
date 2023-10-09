@@ -18,7 +18,7 @@ public class ModulesListOverlay
     public void render(DrawContext drawContext, int scaledWidth, int scaledHeight)
     {
         // do not draw if F3 enabled
-        if (mc.options.debugEnabled) return;
+        if (mc.getDebugHud().shouldShowDebugHud()) return;
         
         int yOffset = 0;
         for (Module_ m : enabledModules)

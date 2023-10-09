@@ -25,7 +25,7 @@ public class SettingsScreen extends Screen
     @Override
 	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) 
 	{
-        this.renderBackground(drawContext);
+        this.renderBackground(drawContext, mouseX, mouseY, delta);
 
         // move window if dragging
         if (dragging)

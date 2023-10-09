@@ -19,7 +19,7 @@ public class ClickGUIScreen extends Screen
 	{
 		super(Text.literal("ClickGUI"));
 		categoryPanes = new ArrayList<CategoryPane>();
-		Map<String, Object> panePos = ((Map<String, Object>)Moonlight.INSTANCE.CONFIG.config.get("panes"));
+		Map<String, Object> panePos = ((Map<String, Object>)Moonlight.CONFIG.config.get("panes"));
 		for (Category category : Category.values())
 		{ 
 			int xOffset = MathUtils.d2iSafe(((Map<String, Object>)panePos.get(category.name)).get("x"));
@@ -32,7 +32,7 @@ public class ClickGUIScreen extends Screen
 	@Override
 	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) 
 	{
-		this.renderBackground(drawContext);
+		this.renderBackground(drawContext, mouseX, mouseY, delta);
 		for (CategoryPane category : categoryPanes)
 		{
 			category.render(drawContext, mouseX, mouseY, delta, textRenderer);
