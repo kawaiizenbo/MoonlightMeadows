@@ -13,6 +13,7 @@ import me.kawaiizenbo.moonlight.module.Module_;
 import me.kawaiizenbo.moonlight.module.settings.BooleanSetting;
 import me.kawaiizenbo.moonlight.module.settings.DoubleSetting;
 import me.kawaiizenbo.moonlight.module.settings.Setting;
+import me.kawaiizenbo.moonlight.module.settings.StringSetting;
 import me.kawaiizenbo.moonlight.ui.clickgui.CategoryPane;
 import me.kawaiizenbo.moonlight.ui.clickgui.ClickGUIScreen;
 import me.kawaiizenbo.moonlight.util.ColorUtils;
@@ -60,7 +61,10 @@ public class Moonlight implements ModInitializer
                 else if (s instanceof DoubleSetting)
                 {
                     ((DoubleSetting)s).value = (Double)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)CONFIG.config.get("modules")).get(m.name)).get("settings")).get(s.name);
-
+                }
+				else if (s instanceof StringSetting)
+                {
+                    ((StringSetting)s).value = (String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)CONFIG.config.get("modules")).get(m.name)).get("settings")).get(s.name);
                 }
 			}
 		}

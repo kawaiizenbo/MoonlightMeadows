@@ -7,6 +7,7 @@ import net.minecraft.text.Text;
 
 public class ColorSetting extends Setting
 {
+    // this is unfinished, please use 3 DoubleSettings instead
     public int value;
     public int r;
     public int g;

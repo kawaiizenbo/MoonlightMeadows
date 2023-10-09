@@ -3,6 +3,7 @@ package me.kawaiizenbo.moonlight.module;
 import java.util.ArrayList;
 
 import me.kawaiizenbo.moonlight.module.settings.BooleanSetting;
+import me.kawaiizenbo.moonlight.module.settings.KeycodeSetting;
 import me.kawaiizenbo.moonlight.module.settings.Setting;
 import me.kawaiizenbo.moonlight.ui.ModulesListOverlay;
 import net.minecraft.client.MinecraftClient;
@@ -19,6 +20,7 @@ public abstract class Module_
     public ArrayList<Setting> settings;
     
     public BooleanSetting showInModulesList = new BooleanSetting("Show in Modules List", true);
+    public KeycodeSetting keybind = new KeycodeSetting("Keybind", 0);
 
     public Module_(String name, String description, Category category)
     {
@@ -27,6 +29,7 @@ public abstract class Module_
         this.category = category;
         settings = new ArrayList<>();
         settings.add(showInModulesList);
+        settings.add(keybind);
     }
 
     public void onEnable() { ModulesListOverlay.INSTANCE.update(); }
