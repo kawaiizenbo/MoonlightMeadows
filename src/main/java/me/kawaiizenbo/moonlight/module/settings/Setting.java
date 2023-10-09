@@ -7,7 +7,6 @@ public class Setting
 {
     public String name;
     public int height = 24;
-    public Object value;
 
     int x = 0, y = 0;
     public void render(DrawContext drawContext, int x, int y, int mouseX, int mouseY, TextRenderer textRenderer)

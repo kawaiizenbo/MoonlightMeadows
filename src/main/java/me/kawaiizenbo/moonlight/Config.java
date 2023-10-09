@@ -6,17 +6,23 @@ import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.gson.Gson;
 
 import me.kawaiizenbo.moonlight.module.Category;
 import me.kawaiizenbo.moonlight.module.ModuleManager;
 import me.kawaiizenbo.moonlight.module.Module_;
+import me.kawaiizenbo.moonlight.module.settings.BooleanSetting;
+import me.kawaiizenbo.moonlight.module.settings.DoubleSetting;
 import me.kawaiizenbo.moonlight.module.settings.Setting;
 import me.kawaiizenbo.moonlight.ui.clickgui.ClickGUIScreen;
 import net.minecraft.client.MinecraftClient;
 
 public class Config 
 {
+    public static final Logger LOGGER = LoggerFactory.getLogger("mcfg");
     MinecraftClient mc = MinecraftClient.getInstance();
     public File configDir = new File(mc.runDirectory.getPath() + "/moonlight");
     public File configFile = new File(configDir, "config.json");
@@ -41,10 +47,19 @@ public class Config
 		{
 			Map<String, Object> mo = new HashMap<>();
             mo.put("enabled", m.enabled);
+            Map<String, Object> ms = new HashMap<>();
 			for (Setting s : m.settings)
 			{
-                mo.put(s.name, s.value);
+                if (s instanceof BooleanSetting)
+                {
+                    ms.put(s.name, ((BooleanSetting)s).value);
+                }
+                else if (s instanceof DoubleSetting)
+                {
+                    ms.put(s.name, ((DoubleSetting)s).value);
+                }
 			}
+            mo.put("settings", ms);
             mi.put(m.name, mo);
 		}
         config.put("modules", mi);
