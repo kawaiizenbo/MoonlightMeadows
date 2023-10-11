@@ -48,22 +48,65 @@ public class SettingCommand extends Command
                 return 0;
             }
 
-            // you can break this really easily and i dont feel like fixing it :3 have fun
             if (setting instanceof BooleanSetting)
             {
-                ((BooleanSetting)setting).value = Boolean.parseBoolean(v);
+                try 
+                {
+                    ((BooleanSetting)setting).value = Boolean.parseBoolean(v);
+                } 
+                catch (Exception e) 
+                {
+                    ChatUtils.sendMsg(ColorUtils.red + "Invalid Value, expected boolean");
+                    return 0;
+                }
+                
             }
             else if (setting instanceof DoubleSetting)
-            {
-                ((DoubleSetting)setting).value = Double.parseDouble(v);
+            {   
+                try
+                {
+                    ((DoubleSetting)setting).value = Double.parseDouble(v);
+                } 
+                catch (Exception e) 
+                {
+                    ChatUtils.sendMsg(ColorUtils.red + "Invalid Value, expected Double");
+                    return 0;
+                }
             }
-            if (setting instanceof StringSetting)
+            else if (setting instanceof StringSetting)
             {
-                ((StringSetting)setting).value = v;
+                try
+                {
+                    ((StringSetting)setting).value = v;
+                } 
+                catch (Exception e) 
+                {
+                    ChatUtils.sendMsg(ColorUtils.red + "Invalid Value, expected String");
+                    return 0;
+                }
             }
             else if (setting instanceof KeycodeSetting)
-            {
-                ((KeycodeSetting)setting).value = Integer.parseInt(v);
+            {   
+                try
+                {
+                    int kv = Integer.parseInt(v);
+                    if (kv > 348)
+                    {
+                        ChatUtils.sendMsg(ColorUtils.red + "Keycode Value is too high, maximum is 348 (Menu)");
+                        return 0;
+                    }
+                    if (kv < 0)
+                    {
+                        ChatUtils.sendMsg(ColorUtils.red + "Keycode Value must be positive");
+                        return 0;
+                    }
+                    ((KeycodeSetting)setting).value = kv;
+                } 
+                catch (Exception e) 
+                {
+                    ChatUtils.sendMsg(ColorUtils.red + "Invalid Value, expected Keycode (integer)");
+                    return 0;
+                }
             }
 
             return SINGLE_SUCCESS;

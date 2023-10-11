@@ -14,7 +14,7 @@ public class SettingsScreen extends Screen
     private TextButton backButton;
 
     boolean dragging = false;
-    int startX, startY, x = 4, y = 4, windowWidth = 224, windowHeight = 192;
+    int startX, startY, x = (ClickGUIScreen.INSTANCE.width/2)-112, y = (ClickGUIScreen.INSTANCE.height/2)-96, windowWidth = 224, windowHeight = 192;
 
     public SettingsScreen(Module module) 
     {

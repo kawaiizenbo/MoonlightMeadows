@@ -15,20 +15,18 @@ import net.minecraft.client.Keyboard;
 import net.minecraft.client.MinecraftClient;
 
 @Mixin(Keyboard.class)
-public abstract class KeyboardMixin {
+public abstract class KeyboardMixin 
+{
     @Shadow @Final private MinecraftClient client;
 
 	@Inject(method = "onKey", at = @At("HEAD"), cancellable = true)
     public void onKey(long window, int key, int scancode, int action, int modifiers, CallbackInfo info) 
     {
-        System.out.println("Keyboard event occured: " + java.awt.event.KeyEvent.getKeyText(key) + " (keycode "+key+")");
         if (key == GLFW.GLFW_KEY_RIGHT_ALT) MinecraftClient.getInstance().setScreen(ClickGUIScreen.INSTANCE);
         for (Module m : ModuleManager.INSTANCE.modules)
         {
-            System.out.println("checking against module:" + m.name);
-            if (key == m.keybind.value)
+            if (key == m.keybind.value && action == GLFW.GLFW_PRESS)
             {
-                System.out.println("yup, we gotem :3");
                 m.toggle();
             }
         }

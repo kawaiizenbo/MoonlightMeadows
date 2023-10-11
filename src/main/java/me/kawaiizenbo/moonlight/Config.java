@@ -7,9 +7,6 @@ import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.gson.Gson;
 
 import me.kawaiizenbo.moonlight.module.Category;
