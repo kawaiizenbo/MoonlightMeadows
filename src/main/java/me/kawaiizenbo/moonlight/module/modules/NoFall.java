@@ -1,10 +1,10 @@
 package me.kawaiizenbo.moonlight.module.modules;
 
 import me.kawaiizenbo.moonlight.module.Category;
-import me.kawaiizenbo.moonlight.module.Module_;
+import me.kawaiizenbo.moonlight.module.Module;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 
-public class NoFall extends Module_
+public class NoFall extends Module
 {
     public NoFall()
     {

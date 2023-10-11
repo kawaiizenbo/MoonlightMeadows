@@ -1,17 +1,17 @@
 package me.kawaiizenbo.moonlight.ui.clickgui;
 
 import me.kawaiizenbo.moonlight.Moonlight;
-import me.kawaiizenbo.moonlight.module.Module_;
+import me.kawaiizenbo.moonlight.module.Module;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 
 public class ModuleButton 
 {
-    public Module_ module;
+    public Module module;
 	public int x, y, width, height = 0;
 	
-	public ModuleButton(Module_ module) 
+	public ModuleButton(Module module) 
     {
 		this.module = module;
 		this.width = 92;

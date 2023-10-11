@@ -2,6 +2,7 @@ package me.kawaiizenbo.moonlight;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,16 +14,17 @@ import com.google.gson.Gson;
 
 import me.kawaiizenbo.moonlight.module.Category;
 import me.kawaiizenbo.moonlight.module.ModuleManager;
-import me.kawaiizenbo.moonlight.module.Module_;
+import me.kawaiizenbo.moonlight.module.Module;
 import me.kawaiizenbo.moonlight.module.settings.BooleanSetting;
 import me.kawaiizenbo.moonlight.module.settings.DoubleSetting;
+import me.kawaiizenbo.moonlight.module.settings.KeycodeSetting;
 import me.kawaiizenbo.moonlight.module.settings.Setting;
+import me.kawaiizenbo.moonlight.module.settings.StringSetting;
 import me.kawaiizenbo.moonlight.ui.clickgui.ClickGUIScreen;
 import net.minecraft.client.MinecraftClient;
 
 public class Config 
 {
-    public static final Logger LOGGER = LoggerFactory.getLogger("mcfg");
     MinecraftClient mc = MinecraftClient.getInstance();
     public File configDir = new File(mc.runDirectory.getPath() + "/moonlight");
     public File configFile = new File(configDir, "config.json");
@@ -43,13 +45,14 @@ public class Config
     {
         ModuleManager.INSTANCE = new ModuleManager();
         Map<String, Object> mi = new HashMap<>();
-        for (Module_ m : ModuleManager.INSTANCE.modules)
+        for (Module m : ModuleManager.INSTANCE.modules)
 		{
 			Map<String, Object> mo = new HashMap<>();
             mo.put("enabled", m.enabled);
             Map<String, Object> ms = new HashMap<>();
 			for (Setting s : m.settings)
 			{
+                // sometimes i wish i were a nymphet instead of a massive nerd
                 if (s instanceof BooleanSetting)
                 {
                     ms.put(s.name, ((BooleanSetting)s).value);
@@ -57,6 +60,14 @@ public class Config
                 else if (s instanceof DoubleSetting)
                 {
                     ms.put(s.name, ((DoubleSetting)s).value);
+                }
+                if (s instanceof StringSetting)
+                {
+                    ms.put(s.name, ((StringSetting)s).value);
+                }
+                else if (s instanceof KeycodeSetting)
+                {
+                    ms.put(s.name, ((KeycodeSetting)s).value);
                 }
 			}
             mo.put("settings", ms);
@@ -84,7 +95,7 @@ public class Config
         ClickGUIScreen.INSTANCE = new ClickGUIScreen();
     }
 
-    public void load()
+    public void load() throws IOException
     {
         try
         {
@@ -93,7 +104,7 @@ public class Config
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            throw new IOException("Failed to load config file.");
         }
     }
 

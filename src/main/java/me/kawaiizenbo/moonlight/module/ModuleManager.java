@@ -7,7 +7,7 @@ import me.kawaiizenbo.moonlight.module.modules.*;
 public class ModuleManager 
 {
     public static ModuleManager INSTANCE = new ModuleManager();
-    public ArrayList<Module_> modules = new ArrayList<>();
+    public ArrayList<Module> modules = new ArrayList<>();
 
     public ModuleManager()
     {
@@ -18,25 +18,21 @@ public class ModuleManager
 			new Step(),
 			new Fullbright(),
 			new Speed(),
-			new ModulesList()
+			new ModulesList(),
+			new TestModule()
 		);
     }
-
-    public void registerModule(Module_ module) 
-	{
-		modules.add(module);
-	}
 	
-	public void registerModules(Module_... modules) 
+	private void registerModules(Module... modules) 
 	{
-		for (Module_ module : modules) {
+		for (Module module : modules) {
 			this.modules.add(module);
 		}
 	}
 
-    public Module_ getModuleByName(String moduleName) 
+    public Module getModuleByName(String moduleName) 
 	{
-		for(Module_ module : modules) 
+		for(Module module : modules) 
 		{
 			if ((module.name.trim().equalsIgnoreCase(moduleName)))
 			{
@@ -46,10 +42,10 @@ public class ModuleManager
 		return null;
 	}
 
-	public ArrayList<Module_> getModulesByCategory(Category category)
+	public ArrayList<Module> getModulesByCategory(Category category)
 	{
-		ArrayList<Module_> returnedModules = new ArrayList<>();
-		for(Module_ module : modules) 
+		ArrayList<Module> returnedModules = new ArrayList<>();
+		for(Module module : modules) 
 		{
 			if (module.category == category) 
 			{
@@ -59,10 +55,10 @@ public class ModuleManager
 		return returnedModules;
 	}
 
-	public ArrayList<Module_> getEnabledModules() 
+	public ArrayList<Module> getEnabledModules() 
 	{
-		ArrayList<Module_> enabledModules = new ArrayList<>();
-		for (Module_ module : modules) 
+		ArrayList<Module> enabledModules = new ArrayList<>();
+		for (Module module : modules) 
 		{
 			if (!module.enabled)
 				continue;

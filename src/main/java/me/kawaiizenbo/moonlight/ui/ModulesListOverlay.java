@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import me.kawaiizenbo.moonlight.Moonlight;
 import me.kawaiizenbo.moonlight.module.ModuleManager;
-import me.kawaiizenbo.moonlight.module.Module_;
+import me.kawaiizenbo.moonlight.module.Module;
 import net.minecraft.client.MinecraftClient;
 
 import net.minecraft.client.gui.DrawContext;
@@ -13,7 +13,7 @@ public class ModulesListOverlay
 {
     public static ModulesListOverlay INSTANCE = new ModulesListOverlay();
     private MinecraftClient mc = MinecraftClient.getInstance();
-    private ArrayList<Module_> enabledModules = ModuleManager.INSTANCE.getEnabledModules();
+    private ArrayList<Module> enabledModules = ModuleManager.INSTANCE.getEnabledModules();
 
     public void render(DrawContext drawContext, int scaledWidth, int scaledHeight)
     {
@@ -21,7 +21,7 @@ public class ModulesListOverlay
         if (mc.getDebugHud().shouldShowDebugHud()) return;
         
         int yOffset = 0;
-        for (Module_ m : enabledModules)
+        for (Module m : enabledModules)
         {
             if (!m.showInModulesList.value) continue;
             int nameWidth = mc.textRenderer.getWidth(m.name);

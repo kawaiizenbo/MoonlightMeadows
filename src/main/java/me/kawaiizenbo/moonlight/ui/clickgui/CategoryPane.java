@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import me.kawaiizenbo.moonlight.module.Category;
 import me.kawaiizenbo.moonlight.module.ModuleManager;
-import me.kawaiizenbo.moonlight.module.Module_;
+import me.kawaiizenbo.moonlight.module.Module;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 
@@ -24,7 +24,7 @@ public class CategoryPane
         this.y = initialY;
         this.collapsed = collapsed;
         moduleButtons = new ArrayList<ModuleButton>();
-        for (Module_ m : ModuleManager.INSTANCE.getModulesByCategory(category))
+        for (Module m : ModuleManager.INSTANCE.getModulesByCategory(category))
         {
             moduleButtons.add(new ModuleButton(m));
         }

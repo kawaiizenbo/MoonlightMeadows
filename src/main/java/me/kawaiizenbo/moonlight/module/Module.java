@@ -10,7 +10,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.MovementType;
 import net.minecraft.util.math.Vec3d;
 
-public abstract class Module_ 
+public abstract class Module 
 {
     protected static MinecraftClient mc = MinecraftClient.getInstance();
     public String name;
@@ -22,7 +22,7 @@ public abstract class Module_
     public BooleanSetting showInModulesList = new BooleanSetting("Show in Modules List", true);
     public KeycodeSetting keybind = new KeycodeSetting("Keybind", 0);
 
-    public Module_(String name, String description, Category category)
+    public Module(String name, String description, Category category)
     {
         this.name = name;
         this.description = description;
@@ -46,4 +46,24 @@ public abstract class Module_
 			onDisable();
 		}
 	}
+
+    public Setting getSettingByName(String settingName)
+    {
+        for(Setting setting : settings) 
+		{
+			if ((setting.name.trim().equalsIgnoreCase(settingName)))
+			{
+				return setting;
+			}
+		}
+		return null;
+    }
+
+    protected void addSettings(Setting... settings)
+    {
+        for(Setting setting : settings)
+        {
+            this.settings.add(setting);
+        }
+    }
 }

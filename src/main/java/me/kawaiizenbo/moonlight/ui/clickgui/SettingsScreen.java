@@ -1,6 +1,6 @@
 package me.kawaiizenbo.moonlight.ui.clickgui;
 
-import me.kawaiizenbo.moonlight.module.Module_;
+import me.kawaiizenbo.moonlight.module.Module;
 import me.kawaiizenbo.moonlight.module.settings.Setting;
 import me.kawaiizenbo.moonlight.ui.TextButton;
 import me.kawaiizenbo.moonlight.util.ColorUtils;
@@ -10,13 +10,13 @@ import net.minecraft.text.Text;
 
 public class SettingsScreen extends Screen 
 {
-    private Module_ module;
+    private Module module;
     private TextButton backButton;
 
     boolean dragging = false;
     int startX, startY, x = 4, y = 4, windowWidth = 224, windowHeight = 192;
 
-    public SettingsScreen(Module_ module) 
+    public SettingsScreen(Module module) 
     {
         super(Text.literal("Settings"));
         this.module = module;

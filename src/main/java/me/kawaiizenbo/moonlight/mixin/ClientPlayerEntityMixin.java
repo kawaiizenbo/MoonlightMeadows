@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import me.kawaiizenbo.moonlight.module.ModuleManager;
-import me.kawaiizenbo.moonlight.module.Module_;
+import me.kawaiizenbo.moonlight.module.Module;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.MovementType;
@@ -18,7 +18,7 @@ public class ClientPlayerEntityMixin
     @Inject(method = "move", at = @At(value = "TAIL"), cancellable = true)
     public void onMove(MovementType type, Vec3d movement, CallbackInfo ci) 
     {
-        for (Module_ m : ModuleManager.INSTANCE.getEnabledModules())
+        for (Module m : ModuleManager.INSTANCE.getEnabledModules())
         {
             m.onMotion(type, movement);
         }
@@ -27,7 +27,7 @@ public class ClientPlayerEntityMixin
     @Inject(method = "tick", at = @At(value = "HEAD"), cancellable = true)
     public void onTick(CallbackInfo ci) 
     {
-        for (Module_ m : ModuleManager.INSTANCE.getEnabledModules()) 
+        for (Module m : ModuleManager.INSTANCE.getEnabledModules()) 
         {
 			if (MinecraftClient.getInstance().player != null) m.tick();
 		}
@@ -36,7 +36,7 @@ public class ClientPlayerEntityMixin
     @Inject(method = "init", at = @At(value = "TAIL"), cancellable = true)
     public void onInit(CallbackInfo ci) 
     {
-        for (Module_ m : ModuleManager.INSTANCE.getEnabledModules()) 
+        for (Module m : ModuleManager.INSTANCE.getEnabledModules()) 
         {
 			m.onEnable();
 		}

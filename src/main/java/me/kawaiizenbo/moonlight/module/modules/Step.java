@@ -1,10 +1,10 @@
 package me.kawaiizenbo.moonlight.module.modules;
 
 import me.kawaiizenbo.moonlight.module.Category;
-import me.kawaiizenbo.moonlight.module.Module_;
+import me.kawaiizenbo.moonlight.module.Module;
 import me.kawaiizenbo.moonlight.module.settings.DoubleSetting;
 
-public class Step extends Module_
+public class Step extends Module
 {
     DoubleSetting stepHeight = new DoubleSetting("Height", 1, 1, 10, 0);
 

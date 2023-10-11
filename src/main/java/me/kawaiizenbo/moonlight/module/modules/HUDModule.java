@@ -2,13 +2,13 @@ package me.kawaiizenbo.moonlight.module.modules;
 
 import me.kawaiizenbo.moonlight.Moonlight;
 import me.kawaiizenbo.moonlight.module.Category;
-import me.kawaiizenbo.moonlight.module.Module_;
+import me.kawaiizenbo.moonlight.module.Module;
 import me.kawaiizenbo.moonlight.module.settings.BooleanSetting;
 import me.kawaiizenbo.moonlight.module.settings.DoubleSetting;
 import me.kawaiizenbo.moonlight.ui.HUDOverlay;
 import me.kawaiizenbo.moonlight.util.ColorUtils;
 
-public class HUDModule extends Module_ 
+public class HUDModule extends Module 
 {
     public BooleanSetting clientTag = new BooleanSetting("Client Tag", true);
     public DoubleSetting r = new DoubleSetting("Red", 0x55, 0, 255, 0);

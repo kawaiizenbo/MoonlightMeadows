@@ -1,10 +1,10 @@
 package me.kawaiizenbo.moonlight.module.modules;
 
 import me.kawaiizenbo.moonlight.module.Category;
-import me.kawaiizenbo.moonlight.module.Module_;
+import me.kawaiizenbo.moonlight.module.Module;
 import me.kawaiizenbo.moonlight.util.ISimpleOption;
 
-public class Fullbright extends Module_ 
+public class Fullbright extends Module 
 {
     public Fullbright()
     {

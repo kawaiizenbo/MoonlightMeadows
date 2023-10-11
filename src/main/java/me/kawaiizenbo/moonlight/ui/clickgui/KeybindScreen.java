@@ -17,7 +17,7 @@ public class KeybindScreen extends Screen
 	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) 
 	{
 		this.renderBackground(drawContext, mouseX, mouseY, delta);
-        drawContext.drawCenteredTextWithShadow(textRenderer, "Press any key", width/2, height/2, 0xFFFFFFFF);
+        drawContext.drawCenteredTextWithShadow(textRenderer, "Press any key (may not work, use .setting instead)", width/2, height/2, 0xFFFFFFFF);
     }
 
     @Override

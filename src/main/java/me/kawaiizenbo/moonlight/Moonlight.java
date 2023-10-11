@@ -4,14 +4,16 @@ import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import org.slf4j.LoggerFactory;
 
 import me.kawaiizenbo.moonlight.module.ModuleManager;
-import me.kawaiizenbo.moonlight.module.Module_;
+import me.kawaiizenbo.moonlight.module.Module;
 import me.kawaiizenbo.moonlight.module.settings.BooleanSetting;
 import me.kawaiizenbo.moonlight.module.settings.DoubleSetting;
+import me.kawaiizenbo.moonlight.module.settings.KeycodeSetting;
 import me.kawaiizenbo.moonlight.module.settings.Setting;
 import me.kawaiizenbo.moonlight.module.settings.StringSetting;
 import me.kawaiizenbo.moonlight.ui.clickgui.CategoryPane;
@@ -37,36 +39,45 @@ public class Moonlight implements ModInitializer
 
 	public void loadConfig()
 	{
-		LOGGER.info("Loading config...");
-		if (CONFIG.doesConfigExist())
+		try
 		{
+			LOGGER.info("Loading config...");
+			CONFIG.load();
+			for (Module m : ModuleManager.INSTANCE.modules)
+			{
+				m.enabled = (boolean)((Map<String, Object>)((Map<String, Object>)CONFIG.config.get("modules")).get(m.name)).get("enabled");
+				if (m.enabled)
+				{
+					//m.onEnable();
+					// this doesnt work, will probably need to mixin to client server connection or something
+				}
+				for (Setting s : m.settings)
+				{
+                	if (s instanceof BooleanSetting)
+                	{
+                    	((BooleanSetting)s).value = (boolean)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)CONFIG.config.get("modules")).get(m.name)).get("settings")).get(s.name);
+                	}
+                	else if (s instanceof DoubleSetting)
+                	{
+                    	((DoubleSetting)s).value = (Double)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)CONFIG.config.get("modules")).get(m.name)).get("settings")).get(s.name);
+                	}
+					else if (s instanceof StringSetting)
+                	{
+                    	((StringSetting)s).value = (String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)CONFIG.config.get("modules")).get(m.name)).get("settings")).get(s.name);
+                	}
+					else if (s instanceof KeycodeSetting)
+                	{
+                	    ((KeycodeSetting)s).value = ((Double)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)CONFIG.config.get("modules")).get(m.name)).get("settings")).get(s.name)).intValue();
+                	}
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			LOGGER.warn("Config Error: " + e.getMessage());
+			LOGGER.info("Loading default config...");
 			CONFIG.loadDefaultConfig(); 
 			CONFIG.save();
-		}
-		CONFIG.load();
-		for (Module_ m : ModuleManager.INSTANCE.modules)
-		{
-			m.enabled = (boolean)((Map<String, Object>)((Map<String, Object>)CONFIG.config.get("modules")).get(m.name)).get("enabled");
-			if (m.enabled)
-			{
-				//m.onEnable();
-				/// brocken :(
-			}
-			for (Setting s : m.settings)
-			{
-                if (s instanceof BooleanSetting)
-                {
-                    ((BooleanSetting)s).value = (boolean)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)CONFIG.config.get("modules")).get(m.name)).get("settings")).get(s.name);
-                }
-                else if (s instanceof DoubleSetting)
-                {
-                    ((DoubleSetting)s).value = (Double)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)CONFIG.config.get("modules")).get(m.name)).get("settings")).get(s.name);
-                }
-				else if (s instanceof StringSetting)
-                {
-                    ((StringSetting)s).value = (String)((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)CONFIG.config.get("modules")).get(m.name)).get("settings")).get(s.name);
-                }
-			}
 		}
 	}
 
@@ -74,7 +85,7 @@ public class Moonlight implements ModInitializer
 	{
 		LOGGER.info("Saving config...");
 		Map<String, Object> mi = new HashMap<>();
-        for (Module_ m : ModuleManager.INSTANCE.modules)
+        for (Module m : ModuleManager.INSTANCE.modules)
 		{
 			Map<String, Object> mo = new HashMap<>();
             mo.put("enabled", m.enabled);
@@ -88,6 +99,14 @@ public class Moonlight implements ModInitializer
                 else if (s instanceof DoubleSetting)
                 {
                     ms.put(s.name, ((DoubleSetting)s).value);
+                }
+				if (s instanceof StringSetting)
+                {
+                    ms.put(s.name, ((StringSetting)s).value);
+                }
+                else if (s instanceof KeycodeSetting)
+                {
+                    ms.put(s.name, ((KeycodeSetting)s).value);
                 }
 			}
             mo.put("settings", ms);
