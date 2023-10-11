@@ -1,8 +1,23 @@
-# Moonlight Meadows Utility Mod for Minecraft 1.20.1
+# Moonlight Meadows Utility Mod for Modern versions of Minecraft
 
-Please use this mod at your own risk  
-Requires Fabric API and Minecraft 1.20.1
+Requires Fabric API and Minecraft 1.20.2
 
-Default ClickGUI Key is Right Alt
+Default ClickGUI Key is Right Alt.
 
-Grab the latest build [here](https://nightly.link/kawaiizenbo/MoonlightMeadows/workflows/build/main/Artifacts.zip)
+~~Grab the latest release build [here](https://github.com/kawaiizenbo/MoonlightMeadows/releases)~~ These will be available soon.  
+Grab the latest nightly build [here](https://nightly.link/kawaiizenbo/MoonlightMeadows/workflows/build/main/Artifacts.zip)
+
+## Screenshots
+![Title Screen](./readme-assets/title.png)  
+*Title Screen*  
+  
+![In-Game HUD](./readme-assets/ingame.png)  
+*In-Game HUD*  
+  
+![ClickGUI](./readme-assets/clickgui.png)  
+*ClickGUI*  
+  
+
+## Disclaimer
+Please use this mod at your own risk, we are not responsible for any injury or death caused by this mod.  
+This project is not affiliated with Mojang or Microsoft.  
