@@ -45,11 +45,6 @@ public class Moonlight implements ModInitializer
 			for (Module m : ModuleManager.INSTANCE.modules)
 			{
 				m.enabled = (boolean)((Map<String, Object>)((Map<String, Object>)CONFIG.config.get("modules")).get(m.name)).get("enabled");
-				if (m.enabled)
-				{
-					//m.onEnable();
-					// this doesnt work, will probably need to mixin to client server connection or something
-				}
 				for (Setting s : m.settings)
 				{
                 	if (s instanceof BooleanSetting)

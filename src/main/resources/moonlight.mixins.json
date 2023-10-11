@@ -13,7 +13,8 @@
     "ClientConnectionMixin",
     "KeyboardMixin",
     "SimpleOptionMixin",
-    "MinecraftClientMixin"
+    "MinecraftClientMixin",
+    "ClientPlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
