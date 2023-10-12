@@ -24,6 +24,6 @@ public class Step extends Module
     public void onDisable()
     {
         super.onDisable();
-        mc.player.setStepHeight(0.5f);
+        mc.player.setStepHeight(0.6f);
     }
 }

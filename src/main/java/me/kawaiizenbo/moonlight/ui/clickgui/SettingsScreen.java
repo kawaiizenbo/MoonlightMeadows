@@ -44,7 +44,7 @@ public class SettingsScreen extends Screen
 		for (Setting setting : module.settings)
 		{
 			setting.render(drawContext, x+16, yOffset, mouseX, mouseY, textRenderer);
-			yOffset += setting.height + 1;
+			yOffset += 25;
 		}
 	}
 
