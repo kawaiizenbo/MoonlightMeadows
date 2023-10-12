@@ -7,7 +7,6 @@
   ],
   "client": [
     "TitleScreenMixin",
-    "MultiplayerScreenMixin",
     "InGameHudMixin",
     "ChatInputSuggestorMixin",
     "ClientConnectionMixin",

@@ -19,7 +19,9 @@ public class ModuleManager
 			new Fullbright(),
 			new Speed(),
 			new ModulesList(),
-			new TestModule()
+			new ChatSpammer(),
+			new Rotation(),
+			new AutoJump()
 		);
     }
 	

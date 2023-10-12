@@ -25,7 +25,7 @@ public class ModulesListOverlay
         {
             if (!m.showInModulesList.value) continue;
             int nameWidth = mc.textRenderer.getWidth(m.name);
-            drawContext.fill(scaledWidth - nameWidth - 8, yOffset, scaledWidth, yOffset+12, 0x55222222);
+            drawContext.fill(scaledWidth - nameWidth - 8, yOffset, scaledWidth, yOffset+12, 0x77222222);
             drawContext.fill(scaledWidth - 2, yOffset, scaledWidth, yOffset+12, Moonlight.uiColorA);
             drawContext.drawText(mc.textRenderer, m.name, scaledWidth - nameWidth - 4, yOffset + 2, 0xFFFFFFFF, false);
             yOffset += 12;

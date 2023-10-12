@@ -1,7 +1,6 @@
 package me.kawaiizenbo.moonlight.mixin;
 
 import me.kawaiizenbo.moonlight.Moonlight;
-import me.kawaiizenbo.moonlight.ui.altmanager.AltManagerScreen;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -10,12 +9,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.text.Text;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 
@@ -43,19 +39,5 @@ public abstract class TitleScreenMixin extends Screen
         int l = MathHelper.ceil(g * 255.0F) << 24;
 
         drawContext.drawTextWithShadow(this.textRenderer, Moonlight.clientTag + " " + Moonlight.versionTag, 2, 2, 16777215 | l);
-    }
-
-    @Inject(at = @At("TAIL"), method = "init")
-	private void altManagerButton(CallbackInfo callbackInfo) 
-    {
-        this.addDrawableChild(ButtonWidget.builder(Text.literal("Alt Manager"), this::gotoAltManagerScreen)
-            .position(this.width - 102, 2)
-            .size(100, 20)
-            .build());
-	}
-
-    private void gotoAltManagerScreen(ButtonWidget button)
-    {
-        MinecraftClient.getInstance().setScreen(AltManagerScreen.INSTANCE);
     }
 }

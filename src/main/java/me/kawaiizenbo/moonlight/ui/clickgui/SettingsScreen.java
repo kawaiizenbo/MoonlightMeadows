@@ -36,7 +36,7 @@ public class SettingsScreen extends Screen
         drawContext.fill(x, y, x+windowWidth, y+windowHeight, 0xFF222222);
         drawContext.fill(x, y, x+windowWidth, y+16, module.category.color);
         drawContext.fill(x+2, y+2, x+(windowWidth-2), y+14, 0xFF222222);
-        drawContext.drawCenteredTextWithShadow(textRenderer, "Module Settings: "+module.name, x+(windowWidth/2), y+4, 0xFFFFFF);
+        drawContext.drawCenteredTextWithShadow(textRenderer, module.name, x+(windowWidth/2), y+4, 0xFFFFFF);
         drawContext.drawText(textRenderer, module.description, x+8, y+24, 0xFFFFFF, true);
         backButton = new TextButton(ColorUtils.underline + "< Back", x+4, y+4, 0xFFFFFF);
         backButton.render(drawContext, textRenderer, mouseX, mouseY);
