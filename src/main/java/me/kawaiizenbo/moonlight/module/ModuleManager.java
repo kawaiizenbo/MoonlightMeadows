@@ -21,7 +21,8 @@ public class ModuleManager
 			new ModulesList(),
 			new ChatSpammer(),
 			new Rotation(),
-			new AutoJump()
+			new AutoJump(),
+			new Timer()
 		);
     }
 	
