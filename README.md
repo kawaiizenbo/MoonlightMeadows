@@ -4,7 +4,7 @@ Requires Fabric API and Minecraft 1.20.2
 
 Default ClickGUI Key is Right Alt.
 
-~~Grab the latest release build [here](https://github.com/kawaiizenbo/MoonlightMeadows/releases)~~ These will be available soon.  
+Grab the latest release build [here](https://github.com/kawaiizenbo/MoonlightMeadows/releases)
 Grab the latest nightly build [here](https://nightly.link/kawaiizenbo/MoonlightMeadows/workflows/build/main/Artifacts.zip)
 
 ## Screenshots
