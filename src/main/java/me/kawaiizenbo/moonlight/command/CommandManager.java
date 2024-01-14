@@ -30,6 +30,8 @@ public class CommandManager
         add(new Toggle());
         add(new Teleport());
         add(new SettingCommand());
+        add(new Reset());
+        add(new DeathPos());
         commands.sort(Comparator.comparing(Command::getName));
     }
 

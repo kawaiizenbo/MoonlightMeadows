@@ -6,6 +6,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import me.kawaiizenbo.moonlight.command.Command;
 import me.kawaiizenbo.moonlight.module.ModuleManager;
 import me.kawaiizenbo.moonlight.module.Module;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.command.CommandSource;
 
 public class Toggle extends Command
@@ -13,7 +14,7 @@ public class Toggle extends Command
 
     public Toggle() 
     {
-        super("toggle", "Toggle a module.");
+        super("toggle", "Toggle a module on or off.");
     }
 
     @Override
@@ -24,7 +25,7 @@ public class Toggle extends Command
         {
             String m = context.getArgument("module", String.class);
             Module module = ModuleManager.INSTANCE.getModuleByName(m);
-            module.toggle();
+            MinecraftClient.getInstance().send(() -> module.toggle());
 
             return SINGLE_SUCCESS;
         }));

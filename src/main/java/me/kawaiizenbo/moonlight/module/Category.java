@@ -7,7 +7,8 @@ public enum Category
 	RENDER("Render", 0xFF5555FF),
 	WORLD("World", 0xFF55FF55), 
 	PLAYER("Player", 0xFF00AAAA),
-	CHAT("Chat", 0xFFFFAA00);
+	CHAT("Chat", 0xFFFFAA00),
+	SPECIAL("Special", 0xFFFFFFFF);
 	
 	public String name;
 	public int color;

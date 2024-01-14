@@ -25,7 +25,7 @@ public abstract class KeyboardMixin
         if (key == GLFW.GLFW_KEY_RIGHT_ALT) MinecraftClient.getInstance().setScreen(ClickGUIScreen.INSTANCE);
         for (Module m : ModuleManager.INSTANCE.modules)
         {
-            if (key == m.keybind.value && action == GLFW.GLFW_PRESS)
+            if (key == m.keybind.value && action == GLFW.GLFW_PRESS && MinecraftClient.getInstance().currentScreen == null)
             {
                 m.toggle();
             }

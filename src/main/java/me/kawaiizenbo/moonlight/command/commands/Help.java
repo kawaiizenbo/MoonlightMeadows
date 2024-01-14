@@ -14,19 +14,19 @@ public class Help extends Command
     {
 		super("help", "Gives you a list of all of the commands");
 	}
-
+    
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) 
     {
         builder.executes(context -> 
         {
-			for (Command cmd : CommandManager.get().getAll()) {
+			for (Command cmd : CommandManager.get().getAll()) 
+            {
 				ChatUtils.sendMsg(ColorUtils.aqua + "Command: " + ColorUtils.gray + cmd.getName());
 				ChatUtils.sendMsg(ColorUtils.gray + cmd.getDescription());
+                ChatUtils.sendMsg(ColorUtils.gray + "");
 			}
 			return SINGLE_SUCCESS;
-		});
-        
+		}); 
     }
-    
 }

@@ -22,6 +22,7 @@ public class ClickGUIScreen extends Screen
 		Map<String, Object> panePos = ((Map<String, Object>)Moonlight.CONFIG.config.get("panes"));
 		for (Category category : Category.values())
 		{ 
+			if(category.name == "Special") continue;
 			int xOffset = MathUtils.d2iSafe(((Map<String, Object>)panePos.get(category.name)).get("x"));
 			int yOffset = MathUtils.d2iSafe(((Map<String, Object>)panePos.get(category.name)).get("y"));
 			boolean collapsed = (boolean)((Map<String, Object>)panePos.get(category.name)).get("collapsed");

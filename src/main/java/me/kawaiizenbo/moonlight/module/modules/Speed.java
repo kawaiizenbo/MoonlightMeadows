@@ -9,10 +9,12 @@ import net.minecraft.util.math.Vec3d;
 
 public class Speed extends Module 
 {
+    float oldSpeed;
+
     DoubleSetting speed = new DoubleSetting("Speed", 2, 0.1, 10, 1);
     public Speed() 
     {
-        super("Speed", "Allows you to move faster.", Category.MOVEMENT);
+        super("Speed", "Allows you to move faster. (Deprecated)", Category.MOVEMENT);
         settings.add(speed);
     }
     
