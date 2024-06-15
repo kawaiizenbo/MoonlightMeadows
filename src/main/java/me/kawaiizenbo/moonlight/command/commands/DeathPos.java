@@ -34,9 +34,9 @@ public class DeathPos extends Command
             }
             
 			ChatUtils.sendMsg(ColorUtils.reset + "You last died at: " + 
-            ColorUtils.aqua + " X: " + ColorUtils.gray + pos.getPos().getX() + 
-            ColorUtils.aqua + " Y: " + ColorUtils.gray + pos.getPos().getY() +
-            ColorUtils.aqua + " Z: " + ColorUtils.gray + pos.getPos().getZ()
+            ColorUtils.aqua + " X: " + ColorUtils.gray + pos.pos().getX() + 
+            ColorUtils.aqua + " Y: " + ColorUtils.gray + pos.pos().getY() +
+            ColorUtils.aqua + " Z: " + ColorUtils.gray + pos.pos().getZ()
             );
 			return SINGLE_SUCCESS;
 		}); 

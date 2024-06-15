@@ -26,7 +26,7 @@ public class CategoryPane
         this.y = initialY;
         this.collapsed = collapsed;
         moduleButtons = new ArrayList<ModuleButton>();
-        icon = new Identifier("moonlight", category.name.toLowerCase());
+        icon = Identifier.of("moonlight", category.name.toLowerCase());
         for (Module m : ModuleManager.INSTANCE.getModulesByCategory(category))
         {
             moduleButtons.add(new ModuleButton(m));

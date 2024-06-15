@@ -19,7 +19,7 @@ public class Timer extends Module
     public void onEnable()
     {
         super.onEnable();
-        mc.renderTickCounter = new RenderTickCounter((float)(20.0*speed.value), 0L, this::targetTickRate);
+        //mc.renderTickCounter = new RenderTickCounter((float)(20.0*speed.value), 0L, this::targetTickRate);
         current = speed.value;
     }
 
@@ -33,7 +33,7 @@ public class Timer extends Module
     public void onDisable()
     {
         super.onDisable();
-        mc.renderTickCounter = new RenderTickCounter(20.0f, 0L, this::targetTickRate);
+        //mc.renderTickCounter = new RenderTickCounter(20.0f, 0L, this::targetTickRate);
     }
 
     public float targetTickRate(float millis)

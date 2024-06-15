@@ -11,18 +11,16 @@ import me.kawaiizenbo.moonlight.ui.HUDOverlay;
 import me.kawaiizenbo.moonlight.ui.ModulesListOverlay;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
+import net.minecraft.client.render.RenderTickCounter;
 
 @Mixin(InGameHud.class)
 public class InGameHudMixin {
-
-	@Shadow private int scaledWidth;
-    @Shadow private int scaledHeight;
     
 	@Inject(at = @At("TAIL"), method = "render") 
-	public void onRender (DrawContext drawContext, float tickDelta, CallbackInfo info) 
+	public void onRender (DrawContext drawContext, RenderTickCounter tickCounter, CallbackInfo info) 
     {
-		if (ModuleManager.INSTANCE.getModuleByName("HUD").enabled) HUDOverlay.INSTANCE.render(drawContext, scaledWidth, scaledHeight);
-		if (ModuleManager.INSTANCE.getModuleByName("ModulesList").enabled) ModulesListOverlay.INSTANCE.render(drawContext, scaledWidth, scaledHeight);
+		if (ModuleManager.INSTANCE.getModuleByName("HUD").enabled) HUDOverlay.INSTANCE.render(drawContext, drawContext.getScaledWindowWidth(), drawContext.getScaledWindowHeight());
+		if (ModuleManager.INSTANCE.getModuleByName("ModulesList").enabled) ModulesListOverlay.INSTANCE.render(drawContext, drawContext.getScaledWindowWidth(), drawContext.getScaledWindowHeight());
 	}
 
 }
