@@ -13,7 +13,8 @@
     "KeyboardMixin",
     "SimpleOptionMixin",
     "MinecraftClientMixin",
-    "ClientPlayerEntityMixin"
+    "ClientPlayerEntityMixin",
+	"PowderSnowBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

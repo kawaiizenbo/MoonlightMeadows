@@ -3,7 +3,6 @@ package me.kawaiizenbo.moonlight.command.commands;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
 import me.kawaiizenbo.moonlight.command.Command;
-import me.kawaiizenbo.moonlight.command.CommandManager;
 import me.kawaiizenbo.moonlight.util.ChatUtils;
 import me.kawaiizenbo.moonlight.util.ColorUtils;
 import net.minecraft.command.CommandSource;

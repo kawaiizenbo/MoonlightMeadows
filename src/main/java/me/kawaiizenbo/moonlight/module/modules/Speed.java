@@ -5,38 +5,38 @@ import me.kawaiizenbo.moonlight.module.Module;
 import me.kawaiizenbo.moonlight.module.settings.DoubleSetting;
 import me.kawaiizenbo.moonlight.util.MathUtils;
 import net.minecraft.entity.MovementType;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.util.math.Vec3d;
 
 public class Speed extends Module 
 {
-    float oldSpeed;
+    double old = 0.1;
 
-    DoubleSetting speed = new DoubleSetting("Speed", 2, 0.1, 10, 1);
+    DoubleSetting speed = new DoubleSetting("Speed", 1.4, 0.1, 10, 1);
     public Speed() 
     {
-        super("Speed", "Allows you to move faster. (Deprecated)", Category.MOVEMENT);
+        super("Speed", "Allows you to move faster.", Category.MOVEMENT);
         settings.add(speed);
     }
     
     @Override
-    public void onMotion(MovementType type, Vec3d movement)
+    public void onEnable()
     {
-        // this is a little janky but it works, will find a better solution later
-        if (mc.player.forwardSpeed == 0 && mc.player.sidewaysSpeed == 0 && mc.player.isOnGround())
-        {
-            mc.player.setVelocity(0, 0, 0);
-        }
-        Vec3d move = new Vec3d(mc.player.getX() - mc.player.prevX, 0, mc.player.getZ() - mc.player.prevZ).multiply(20);
-        double mps = Math.abs(MathUtils.length2D(move));
-        double normal = mc.player.isSprinting() ? 5.61 : 4.31;
-        if (mps > normal * speed.value)
-        {
-            return;
-        }
-        if (mc.player.isOnGround())
-        {
-            mc.player.setVelocity(mc.player.getVelocity().x * speed.value, 0, mc.player.getVelocity().z * speed.value);
-        }
+    	super.onEnable();
+    	old = mc.player.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).getBaseValue();
+    }
+
+    @Override
+    public void tick()
+    {	
+        mc.player.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).setBaseValue(speed.value/10d);
+    }
+
+    @Override
+    public void onDisable()
+    {
+        super.onDisable();
+        mc.player.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).setBaseValue(old);
     }
 
 }
