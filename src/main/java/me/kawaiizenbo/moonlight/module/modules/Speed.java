@@ -3,10 +3,7 @@ package me.kawaiizenbo.moonlight.module.modules;
 import me.kawaiizenbo.moonlight.module.Category;
 import me.kawaiizenbo.moonlight.module.Module;
 import me.kawaiizenbo.moonlight.module.settings.DoubleSetting;
-import me.kawaiizenbo.moonlight.util.MathUtils;
-import net.minecraft.entity.MovementType;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.util.math.Vec3d;
 
 public class Speed extends Module 
 {
