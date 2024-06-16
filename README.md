@@ -1,6 +1,6 @@
 # Moonlight Meadows Utility Mod for Modern versions of Minecraft
 
-Requires Fabric API and Minecraft 1.20.4
+Requires Fabric, Fabric API, and Minecraft 1.21
 
 Default ClickGUI Key is Right Alt.
 
@@ -20,4 +20,5 @@ Grab the latest nightly build [here](https://nightly.link/kawaiizenbo/MoonlightM
 
 ## Disclaimer
 Please use this mod at your own risk, we are not responsible for any serious injury or death caused by this mod.  
+Do not use while operating heavy machinery.  
 This project is not affiliated with Mojang or Microsoft.  
