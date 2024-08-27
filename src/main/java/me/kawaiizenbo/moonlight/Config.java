@@ -49,7 +49,6 @@ public class Config
             Map<String, Object> ms = new HashMap<>();
 			for (Setting s : m.settings)
 			{
-                // sometimes i wish i were a nymphet instead of a massive nerd
                 if (s instanceof BooleanSetting)
                 {
                     ms.put(s.name, ((BooleanSetting)s).value);
