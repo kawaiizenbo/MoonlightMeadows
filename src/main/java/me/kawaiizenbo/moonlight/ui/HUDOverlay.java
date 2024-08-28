@@ -33,9 +33,9 @@ public class HUDOverlay
 
         // draw coordinates
         drawContext.drawTextWithShadow(mc.textRenderer, 
-            "X: " + ColorUtils.gray + MathUtils.round(mc.player.getX(), 1) + ColorUtils.reset + 
-            " Y: " + ColorUtils.gray + MathUtils.round(mc.player.getY(), 1) + ColorUtils.reset + 
-            " Z: " + ColorUtils.gray + MathUtils.round(mc.player.getZ(), 1), 2, scaledHeight - 10, Moonlight.uiColorA
+            "X: " + ColorUtils.gray + String.format("%.1f", mc.player.getX()) + ColorUtils.reset + 
+            " Y: " + ColorUtils.gray + String.format("%.1f", mc.player.getY()) + ColorUtils.reset + 
+            " Z: " + ColorUtils.gray + String.format("%.1f", mc.player.getZ()), 2, scaledHeight - 10, Moonlight.uiColorA
         );
 
         // draw client tag (if enabled)

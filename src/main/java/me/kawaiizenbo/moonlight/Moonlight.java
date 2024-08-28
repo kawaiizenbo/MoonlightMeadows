@@ -24,7 +24,7 @@ public class Moonlight implements ModInitializer
 	public static final Moonlight INSTANCE = new Moonlight();
 	public static final Logger LOGGER = LoggerFactory.getLogger("Moonlight");
 	public static final String clientTag = ColorUtils.aqua + "Moonlight Meadows";
-	public static final String versionTag = ColorUtils.magenta + "v0.2.0";
+	public static final String versionTag = ColorUtils.magenta + "v0.2.1";
 	public static Config CONFIG = new Config();
 	public static int uiColorA = 0xFF55FFFF;
 	public static int uiColor = 0x55FFFF;
