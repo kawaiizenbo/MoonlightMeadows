@@ -14,7 +14,7 @@ public class ModuleManager
         registerModules(
 			new Fly(),
 			new NoFall(),
-			new HUDModule(),
+			new HUDEnabler(),
 			new Step(),
 			new Fullbright(),
 			new Speed(),

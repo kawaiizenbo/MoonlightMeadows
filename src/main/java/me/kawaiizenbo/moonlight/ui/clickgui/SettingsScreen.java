@@ -2,7 +2,8 @@ package me.kawaiizenbo.moonlight.ui.clickgui;
 
 import me.kawaiizenbo.moonlight.module.Module;
 import me.kawaiizenbo.moonlight.module.settings.Setting;
-import me.kawaiizenbo.moonlight.ui.TextButton;
+import me.kawaiizenbo.moonlight.ui.SetScreenButton;
+import me.kawaiizenbo.moonlight.ui.hud.HUDEditorScreen;
 import me.kawaiizenbo.moonlight.util.ColorUtils;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -11,7 +12,8 @@ import net.minecraft.text.Text;
 public class SettingsScreen extends Screen 
 {
     private Module module;
-    private TextButton backButton;
+    private SetScreenButton backButton;
+    private SetScreenButton editButton;
 
     boolean dragging = false;
     int startX, startY, x = (ClickGUIScreen.INSTANCE.width/2)-112, y = (ClickGUIScreen.INSTANCE.height/2)-96, windowWidth = 224, windowHeight = 192;
@@ -19,6 +21,8 @@ public class SettingsScreen extends Screen
     public SettingsScreen(Module module) 
     {
         super(Text.literal("Settings"));
+        backButton = new SetScreenButton(ColorUtils.underline + "< Back", x+4, y+4, 0xFFFFFF, ClickGUIScreen.INSTANCE);
+        editButton = new SetScreenButton(ColorUtils.underline + "Edit", x+windowWidth-22, y+4, 0xFFFFFF, HUDEditorScreen.INSTANCE);
         this.module = module;
     }
 
@@ -38,8 +42,8 @@ public class SettingsScreen extends Screen
         drawContext.fill(x+2, y+2, x+(windowWidth-2), y+14, 0xFF222222);
         drawContext.drawCenteredTextWithShadow(textRenderer, module.name, x+(windowWidth/2), y+4, 0xFFFFFF);
         drawContext.drawText(textRenderer, module.description, x+8, y+24, 0xFFFFFF, true);
-        backButton = new TextButton(ColorUtils.underline + "< Back", x+4, y+4, 0xFFFFFF);
-        backButton.render(drawContext, textRenderer, mouseX, mouseY);
+        backButton.render(drawContext, textRenderer, mouseX, mouseY, x+4, y+4);
+        if (module.showEditButton) editButton.render(drawContext, textRenderer, mouseX, mouseY, x+windowWidth-22, y+4);
 		int yOffset = y+40;
 		for (Setting setting : module.settings)
 		{

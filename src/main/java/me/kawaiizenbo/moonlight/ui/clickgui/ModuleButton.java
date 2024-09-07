@@ -1,6 +1,5 @@
 package me.kawaiizenbo.moonlight.ui.clickgui;
 
-import me.kawaiizenbo.moonlight.Moonlight;
 import me.kawaiizenbo.moonlight.module.Module;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -23,7 +22,7 @@ public class ModuleButton
 		this.x = x;
 		this.y = y;
 		drawContext.fill(x, y, x + width, y + height, hovered(mouseX, mouseY) ? 0xFF333333 : 0xFF222222);
-		drawContext.drawText(textRenderer, module.name, x+2, y+2, module.enabled ? Moonlight.uiColor : 0xFFFFFF, false);
+		drawContext.drawText(textRenderer, module.name, x+2, y+2, module.enabled ? 0x55FFFF : 0xFFFFFF, false);
 	}
 	
 	public boolean hovered(int mouseX, int mouseY) 

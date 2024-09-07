@@ -6,7 +6,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import me.kawaiizenbo.moonlight.module.ModuleManager;
-import me.kawaiizenbo.moonlight.ui.HUDOverlay;
+import me.kawaiizenbo.moonlight.module.modules.HUDEnabler;
+import me.kawaiizenbo.moonlight.ui.LegacyHUD;
 import me.kawaiizenbo.moonlight.ui.ModulesListOverlay;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -18,7 +19,12 @@ public class InGameHudMixin {
 	@Inject(at = @At("TAIL"), method = "render") 
 	public void onRender (DrawContext drawContext, RenderTickCounter tickCounter, CallbackInfo info) 
     {
-		if (ModuleManager.INSTANCE.getModuleByName("HUD").enabled) HUDOverlay.INSTANCE.render(drawContext, drawContext.getScaledWindowWidth(), drawContext.getScaledWindowHeight());
+		HUDEnabler hudModule = (HUDEnabler)ModuleManager.INSTANCE.getModuleByName("HUD");
+		if (hudModule.enabled) 
+		{
+			if (hudModule.legacyHud.value) LegacyHUD.INSTANCE.render(drawContext, drawContext.getScaledWindowWidth(), drawContext.getScaledWindowHeight());
+			// wip
+		}
 		if (ModuleManager.INSTANCE.getModuleByName("ModulesList").enabled) ModulesListOverlay.INSTANCE.render(drawContext, drawContext.getScaledWindowWidth(), drawContext.getScaledWindowHeight());
 	}
 
