@@ -23,7 +23,8 @@ public class ModuleManager
 			new Rotation(),
 			new AutoJump(),
 			new Reach(),
-			new AntiPowderSnow()
+			new AntiPowderSnow(),
+			new AutoTotem()
 			/*new Timer()*/
 		);
     }
