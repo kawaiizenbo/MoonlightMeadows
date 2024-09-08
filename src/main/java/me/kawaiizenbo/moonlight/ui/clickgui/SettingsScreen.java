@@ -3,7 +3,7 @@ package me.kawaiizenbo.moonlight.ui.clickgui;
 import me.kawaiizenbo.moonlight.module.Module;
 import me.kawaiizenbo.moonlight.module.settings.Setting;
 import me.kawaiizenbo.moonlight.ui.SetScreenButton;
-import me.kawaiizenbo.moonlight.ui.hud.HUDEditorScreen;
+import me.kawaiizenbo.moonlight.ui.hud.editor.HUDEditorScreen;
 import me.kawaiizenbo.moonlight.util.ColorUtils;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -73,6 +73,7 @@ public class SettingsScreen extends Screen
             dragging = true;
         }
         backButton.mouseClicked((int)mouseX, (int)mouseY);
+        editButton.mouseClicked((int)mouseX, (int)mouseY);
         for (Setting setting : module.settings)
         {
             setting.mouseClicked(mouseX, mouseY, button);

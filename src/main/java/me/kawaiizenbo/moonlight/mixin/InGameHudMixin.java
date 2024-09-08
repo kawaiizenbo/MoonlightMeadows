@@ -9,6 +9,7 @@ import me.kawaiizenbo.moonlight.module.ModuleManager;
 import me.kawaiizenbo.moonlight.module.modules.HUDEnabler;
 import me.kawaiizenbo.moonlight.ui.LegacyHUD;
 import me.kawaiizenbo.moonlight.ui.ModulesListOverlay;
+import me.kawaiizenbo.moonlight.ui.hud.HUDRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.render.RenderTickCounter;
@@ -23,7 +24,7 @@ public class InGameHudMixin {
 		if (hudModule.enabled) 
 		{
 			if (hudModule.legacyHud.value) LegacyHUD.INSTANCE.render(drawContext, drawContext.getScaledWindowWidth(), drawContext.getScaledWindowHeight());
-			// wip
+			else HUDRenderer.INSTANCE.render(drawContext);
 		}
 		if (ModuleManager.INSTANCE.getModuleByName("ModulesList").enabled) ModulesListOverlay.INSTANCE.render(drawContext, drawContext.getScaledWindowWidth(), drawContext.getScaledWindowHeight());
 	}
