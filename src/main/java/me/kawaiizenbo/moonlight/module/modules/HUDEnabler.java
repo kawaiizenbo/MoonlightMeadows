@@ -2,11 +2,11 @@ package me.kawaiizenbo.moonlight.module.modules;
 
 import me.kawaiizenbo.moonlight.module.Category;
 import me.kawaiizenbo.moonlight.module.Module;
-import me.kawaiizenbo.moonlight.module.settings.BooleanSetting;
+import me.kawaiizenbo.moonlight.module.settings.IndexSetting;
 
 public class HUDEnabler extends Module 
 {
-	public BooleanSetting legacyHud = new BooleanSetting("Legacy HUD", true);
+	public IndexSetting mode = new IndexSetting("Mode", 0, "Modular", "Legacy");
 	
     public HUDEnabler()
     {
@@ -14,6 +14,6 @@ public class HUDEnabler extends Module
         this.enabled = true;
         this.showInModulesList.value = false;
         this.showEditButton = true;
-        settings.add(legacyHud);
+        settings.add(mode);
     }    
 }

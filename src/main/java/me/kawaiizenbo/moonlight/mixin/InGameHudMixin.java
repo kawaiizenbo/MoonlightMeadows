@@ -23,7 +23,7 @@ public class InGameHudMixin {
 		HUDEnabler hudModule = (HUDEnabler)ModuleManager.INSTANCE.getModuleByName("HUD");
 		if (hudModule.enabled) 
 		{
-			if (hudModule.legacyHud.value) LegacyHUD.INSTANCE.render(drawContext, drawContext.getScaledWindowWidth(), drawContext.getScaledWindowHeight());
+			if (hudModule.mode.index == 1) LegacyHUD.INSTANCE.render(drawContext, drawContext.getScaledWindowWidth(), drawContext.getScaledWindowHeight());
 			else HUDRenderer.INSTANCE.render(drawContext);
 		}
 		if (ModuleManager.INSTANCE.getModuleByName("ModulesList").enabled) ModulesListOverlay.INSTANCE.render(drawContext, drawContext.getScaledWindowWidth(), drawContext.getScaledWindowHeight());
