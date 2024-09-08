@@ -17,6 +17,7 @@ public class HUDModuleManager
 			new Ping(2, 22),
 			new MovementSpeed(2, 32),
 			new Coordinates(2, 42)
+			//new TestModuleHUD(20, 50)
 		);
 	}
 	

@@ -1,8 +1,10 @@
 package me.kawaiizenbo.moonlight.ui.hud.editor;
 
 import me.kawaiizenbo.moonlight.ui.hud.HUDModule;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.util.Identifier;
 
 public class HUDModuleButton 
 {
@@ -22,6 +24,7 @@ public class HUDModuleButton
 		this.y = y;
 		drawContext.fill(x, y, x + width, y + height, hovered(mouseX, mouseY) ? 0xFF333333 : 0xFF222222);
 		drawContext.drawText(textRenderer, module.name, x+2, y+2, module.enabled ? 0x55FFFF : 0xFFFFFF, false);
+		if (!module.settings.isEmpty()) drawContext.drawGuiTexture(Identifier.of("moonlight", "settings"), x+width-12, y, 12, 12);
 	}
 	
 	public boolean hovered(int mouseX, int mouseY) 
@@ -39,8 +42,7 @@ public class HUDModuleButton
             }
 		    else if (button == 1)
             {
-		    	// HUDModule Settings coming Soon TM
-                //MinecraftClient.getInstance().setScreen(new SettingsScreen(module));
+		    	if (!module.settings.isEmpty()) MinecraftClient.getInstance().setScreen(new HUDModuleSettingsScreen(module));
             }
 			return true;
 		}

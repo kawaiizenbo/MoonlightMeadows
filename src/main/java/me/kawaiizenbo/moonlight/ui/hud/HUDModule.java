@@ -1,5 +1,8 @@
 package me.kawaiizenbo.moonlight.ui.hud;
 
+import java.util.ArrayList;
+
+import me.kawaiizenbo.moonlight.module.settings.Setting;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -11,6 +14,7 @@ public class HUDModule
     int startX, startY;
     boolean dragging = false;
     public boolean enabled = false;
+    public ArrayList<Setting> settings;
     
     protected static MinecraftClient mc = MinecraftClient.getInstance();
 
@@ -19,6 +23,7 @@ public class HUDModule
     	this.name = name;
         this.x = x;
         this.y = y;
+        settings = new ArrayList<>();
     }
 
     public void render(DrawContext drawContext, int mouseX, int mouseY, TextRenderer textRenderer, boolean editMode, boolean enabled) 
