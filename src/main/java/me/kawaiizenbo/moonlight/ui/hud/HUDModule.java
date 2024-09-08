@@ -55,4 +55,8 @@ public class HUDModule
 		dragging = false;
 	}
 
+    public void toggle() 
+    {
+		enabled = !enabled;
+	}
 }

@@ -9,10 +9,12 @@ import net.minecraft.text.Text;
 public class HUDEditorScreen extends Screen
 {
     public static HUDEditorScreen INSTANCE = new HUDEditorScreen();
+    HUDModuleList moduleList;
 	
 	public HUDEditorScreen() 
 	{
 		super(Text.literal("HUD Editor"));
+		moduleList = new HUDModuleList(256, 2, false);
 	}
 
 	@Override
@@ -23,6 +25,7 @@ public class HUDEditorScreen extends Screen
 		{
 			h.render(drawContext, mouseX, mouseY, textRenderer, true, h.enabled);
 		}
+		moduleList.render(drawContext, mouseX, mouseY, delta, textRenderer);
 	}
 
 	@Override
@@ -32,6 +35,7 @@ public class HUDEditorScreen extends Screen
 		{
 			h.mouseClicked((int)mouseX, (int)mouseY, button);
 		}
+		moduleList.mouseClicked((int)mouseX, (int)mouseY, button);
 		return super.mouseClicked(mouseX, mouseY, button);
 	}
 
@@ -42,6 +46,7 @@ public class HUDEditorScreen extends Screen
 		{
 			h.mouseReleased((int)mouseX, (int)mouseY, button);
 		}
+		moduleList.mouseReleased((int)mouseX, (int)mouseY, button);
 		return super.mouseReleased(mouseX, mouseY, button);
 	}
 	
