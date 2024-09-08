@@ -1,22 +1,24 @@
 package me.kawaiizenbo.moonlight.ui.hud.modules;
 
 import me.kawaiizenbo.moonlight.ui.hud.HUDModule;
+import me.kawaiizenbo.moonlight.util.ColorUtils;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 
-public class TestModuleHUD extends HUDModule
+public class FPS extends HUDModule
 {
-	public TestModuleHUD(int x, int y) 
+	public FPS(int x, int y) 
 	{
-		super("Test HUD Module", x, y);
-		this.width = 96;
+		super("FPS", x, y);
+		this.width = 48;
 		this.height = 8;
+		this.enabled = true;
 	}
 
 	@Override
 	public void render(DrawContext drawContext, int mouseX, int mouseY, TextRenderer textRenderer, boolean editMode, boolean enabled) 
 	{
 		super.render(drawContext, mouseX, mouseY, textRenderer, editMode, enabled);
-		drawContext.drawText(textRenderer, "Text Text Text Test :3", x, y, 0xFFFFFF, false);
+		drawContext.drawTextWithShadow(mc.textRenderer, "FPS: " + ColorUtils.gray + mc.fpsDebugString.split(" ")[0], x, y, 0xFF55FFFF);
 	}
 }

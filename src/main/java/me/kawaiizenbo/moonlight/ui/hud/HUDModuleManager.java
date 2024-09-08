@@ -2,7 +2,7 @@ package me.kawaiizenbo.moonlight.ui.hud;
 
 import java.util.ArrayList;
 
-import me.kawaiizenbo.moonlight.ui.hud.modules.TestModuleHUD;
+import me.kawaiizenbo.moonlight.ui.hud.modules.*;
 
 public class HUDModuleManager 
 {
@@ -12,7 +12,11 @@ public class HUDModuleManager
 	public HUDModuleManager() 
 	{
 		registerModules(
-			new TestModuleHUD(0, 0)
+			new ClientTag(2, 2),
+			new FPS(2, 12),
+			new Ping(2, 22),
+			new MovementSpeed(2, 32),
+			new Coordinates(2, 42)
 		);
 	}
 	
@@ -33,5 +37,17 @@ public class HUDModuleManager
 			}
 		}
 		return null;
+	}
+    
+    public ArrayList<HUDModule> getEnabledModules() 
+	{
+		ArrayList<HUDModule> enabledModules = new ArrayList<>();
+		for (HUDModule module : modules) 
+		{
+			if (!module.enabled)
+				continue;
+			enabledModules.add(module);
+		}
+		return enabledModules;
 	}
 }

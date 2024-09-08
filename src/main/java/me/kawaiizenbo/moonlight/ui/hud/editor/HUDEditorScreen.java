@@ -21,7 +21,7 @@ public class HUDEditorScreen extends Screen
 		this.renderBackground(drawContext, mouseX, mouseY, delta);
 		for (HUDModule h : HUDModuleManager.INSTANCE.modules)
 		{
-			h.render(drawContext, mouseX, mouseY, textRenderer, true);
+			h.render(drawContext, mouseX, mouseY, textRenderer, true, h.enabled);
 		}
 	}
 

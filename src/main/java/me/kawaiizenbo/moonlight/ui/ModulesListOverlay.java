@@ -10,6 +10,8 @@ import net.minecraft.client.gui.DrawContext;
 
 public class ModulesListOverlay
 {
+	// this will be replaced with a new hud version at some point
+	
     public static ModulesListOverlay INSTANCE = new ModulesListOverlay();
     private MinecraftClient mc = MinecraftClient.getInstance();
     private ArrayList<Module> enabledModules = ModuleManager.INSTANCE.getEnabledModules();

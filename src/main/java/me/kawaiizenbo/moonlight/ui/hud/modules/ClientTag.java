@@ -1,22 +1,24 @@
 package me.kawaiizenbo.moonlight.ui.hud.modules;
 
+import me.kawaiizenbo.moonlight.Moonlight;
 import me.kawaiizenbo.moonlight.ui.hud.HUDModule;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 
-public class TestModuleHUD extends HUDModule
+public class ClientTag extends HUDModule
 {
-	public TestModuleHUD(int x, int y) 
+	public ClientTag(int x, int y) 
 	{
-		super("Test HUD Module", x, y);
-		this.width = 96;
+		super("Client Tag", x, y);
+		this.width = 128;
 		this.height = 8;
+		this.enabled = true;
 	}
 
 	@Override
 	public void render(DrawContext drawContext, int mouseX, int mouseY, TextRenderer textRenderer, boolean editMode, boolean enabled) 
 	{
 		super.render(drawContext, mouseX, mouseY, textRenderer, editMode, enabled);
-		drawContext.drawText(textRenderer, "Text Text Text Test :3", x, y, 0xFFFFFF, false);
+		drawContext.drawTextWithShadow(mc.textRenderer, Moonlight.clientTag + " " + Moonlight.versionTag, x, y, 16777215);
 	}
 }

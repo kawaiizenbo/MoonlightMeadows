@@ -13,10 +13,10 @@ public class HUDRenderer
         // do not draw if F3 enabled
     	if (mc.getDebugHud().shouldShowDebugHud()) return;
 
-        for (HUDModule h : HUDModuleManager.INSTANCE.modules)
+        for (HUDModule h : HUDModuleManager.INSTANCE.getEnabledModules())
         {
         	// mouse coords are not needed when not in edit mode
-        	h.render(drawContext, 0, 0, mc.textRenderer, false);
+        	h.render(drawContext, 0, 0, mc.textRenderer, false, true);
         }
     }
 }
