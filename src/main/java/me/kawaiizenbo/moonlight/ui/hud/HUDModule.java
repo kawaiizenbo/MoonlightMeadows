@@ -7,7 +7,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 
-public class HUDModule 
+public abstract class HUDModule 
 {
     public int x, y, height, width;
     public String name;

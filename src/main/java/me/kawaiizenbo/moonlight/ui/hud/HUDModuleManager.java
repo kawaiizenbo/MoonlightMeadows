@@ -16,7 +16,9 @@ public class HUDModuleManager
 			new FPS(2, 12),
 			new Ping(2, 22),
 			new MovementSpeed(2, 32),
-			new Coordinates(2, 42)
+			new Coordinates(2, 42),
+			new ArmorDisplay(2, 52),
+			new TotemCounter(20, 52)
 			//new TestModuleHUD(20, 50)
 		);
 	}
