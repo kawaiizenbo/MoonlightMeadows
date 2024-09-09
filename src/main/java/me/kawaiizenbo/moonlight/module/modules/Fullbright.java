@@ -11,7 +11,8 @@ public class Fullbright extends Module
         super("Fullbright", "Allows you to see in the dark.", Category.RENDER);
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void onEnable()
     {
         super.onEnable();

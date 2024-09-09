@@ -1,28 +1,26 @@
-package me.kawaiizenbo.moonlight.ui.clickgui;
+package me.kawaiizenbo.moonlight.ui.hud.editor;
 
-import me.kawaiizenbo.moonlight.module.Module;
 import me.kawaiizenbo.moonlight.module.settings.Setting;
 import me.kawaiizenbo.moonlight.ui.SetScreenButton;
-import me.kawaiizenbo.moonlight.ui.hud.editor.HUDEditorScreen;
+import me.kawaiizenbo.moonlight.ui.hud.HUDModule;
 import me.kawaiizenbo.moonlight.util.ColorUtils;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
-public class SettingsScreen extends Screen 
+public class HUDModuleSettingsScreen extends Screen 
 {
-    private Module module;
+	// adapted for hud modules
+    private HUDModule module;
     private SetScreenButton backButton;
-    private SetScreenButton editButton;
 
     boolean dragging = false;
-    int startX, startY, x = (ClickGUIScreen.INSTANCE.width/2)-112, y = (ClickGUIScreen.INSTANCE.height/2)-96, windowWidth = 224, windowHeight = 192;
+    int startX, startY, x = (HUDEditorScreen.INSTANCE.width/2)-112, y = (HUDEditorScreen.INSTANCE.height/2)-96, windowWidth = 224, windowHeight = 192;
 
-    public SettingsScreen(Module module) 
+    public HUDModuleSettingsScreen(HUDModule module) 
     {
         super(Text.literal("Settings"));
-        backButton = new SetScreenButton(ColorUtils.underline + "< Back", x+4, y+4, 0xFFFFFF, ClickGUIScreen.INSTANCE);
-        editButton = new SetScreenButton(ColorUtils.underline + "Edit", x+windowWidth-22, y+4, 0xFFFFFF, HUDEditorScreen.INSTANCE);
+        backButton = new SetScreenButton(ColorUtils.underline + "< Back", x+4, y+4, 0xFFFFFF, HUDEditorScreen.INSTANCE);
         this.module = module;
     }
 
@@ -38,13 +36,11 @@ public class SettingsScreen extends Screen
             y = mouseY - startY;
         }
         drawContext.fill(x, y, x+windowWidth, y+windowHeight, 0xFF222222);
-        drawContext.fill(x, y, x+windowWidth, y+16, module.category.color);
+        drawContext.fill(x, y, x+windowWidth, y+16, 0xFF55FFFF);
         drawContext.fill(x+2, y+2, x+(windowWidth-2), y+14, 0xFF222222);
         drawContext.drawCenteredTextWithShadow(textRenderer, module.name, x+(windowWidth/2), y+4, 0xFFFFFF);
-        drawContext.drawText(textRenderer, module.description, x+8, y+24, 0xFFFFFF, true);
         backButton.render(drawContext, textRenderer, mouseX, mouseY, x+4, y+4);
-        if (module.showEditButton) editButton.render(drawContext, textRenderer, mouseX, mouseY, x+windowWidth-22, y+4);
-		int yOffset = y+40;
+		int yOffset = y+24;
 		for (Setting setting : module.settings)
 		{
 			setting.render(drawContext, x+16, yOffset, mouseX, mouseY, textRenderer);
@@ -73,7 +69,6 @@ public class SettingsScreen extends Screen
             dragging = true;
         }
         backButton.mouseClicked((int)mouseX, (int)mouseY);
-        editButton.mouseClicked((int)mouseX, (int)mouseY);
         for (Setting setting : module.settings)
         {
             setting.mouseClicked(mouseX, mouseY, button);

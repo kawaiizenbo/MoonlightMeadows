@@ -18,6 +18,7 @@ public abstract class Module
     public Category category;
     public boolean enabled;
     public ArrayList<Setting> settings;
+    public boolean showEditButton;
     
     public BooleanSetting showInModulesList = new BooleanSetting("Show in Modules List", true);
     public KeycodeSetting keybind = new KeycodeSetting("Keybind", 0);

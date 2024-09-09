@@ -1,19 +1,20 @@
-package me.kawaiizenbo.moonlight.ui.clickgui;
+package me.kawaiizenbo.moonlight.ui.hud.editor;
 
-import me.kawaiizenbo.moonlight.module.Module;
+import me.kawaiizenbo.moonlight.ui.hud.HUDModule;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.util.Identifier;
 
-public class ModuleButton 
+public class HUDModuleButton 
 {
-    public Module module;
+    public HUDModule module;
 	public int x, y, width, height = 0;
 	
-	public ModuleButton(Module module) 
+	public HUDModuleButton(HUDModule module) 
     {
 		this.module = module;
-		this.width = 92;
+		this.width = 124;
 		this.height = 12;
 	}
 
@@ -23,6 +24,7 @@ public class ModuleButton
 		this.y = y;
 		drawContext.fill(x, y, x + width, y + height, hovered(mouseX, mouseY) ? 0xFF333333 : 0xFF222222);
 		drawContext.drawText(textRenderer, module.name, x+2, y+2, module.enabled ? 0x55FFFF : 0xFFFFFF, false);
+		if (!module.settings.isEmpty()) drawContext.drawGuiTexture(Identifier.of("moonlight", "settings"), x+width-12, y, 12, 12);
 	}
 	
 	public boolean hovered(int mouseX, int mouseY) 
@@ -40,7 +42,7 @@ public class ModuleButton
             }
 		    else if (button == 1)
             {
-                MinecraftClient.getInstance().setScreen(new SettingsScreen(module));
+		    	if (!module.settings.isEmpty()) MinecraftClient.getInstance().setScreen(new HUDModuleSettingsScreen(module));
             }
 			return true;
 		}

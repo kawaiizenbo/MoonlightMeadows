@@ -14,7 +14,7 @@ public class ModuleManager
         registerModules(
 			new Fly(),
 			new NoFall(),
-			new HUDModule(),
+			new HUDEnabler(),
 			new Step(),
 			new Fullbright(),
 			new Speed(),
@@ -23,7 +23,9 @@ public class ModuleManager
 			new Rotation(),
 			new AutoJump(),
 			new Reach(),
-			new AntiPowderSnow()
+			new AntiPowderSnow(),
+			new AutoTotem(),
+			new AutoWalk()
 			/*new Timer()*/
 		);
     }

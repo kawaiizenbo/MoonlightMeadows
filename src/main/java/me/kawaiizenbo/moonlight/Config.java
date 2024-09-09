@@ -14,10 +14,13 @@ import me.kawaiizenbo.moonlight.module.ModuleManager;
 import me.kawaiizenbo.moonlight.module.Module;
 import me.kawaiizenbo.moonlight.module.settings.BooleanSetting;
 import me.kawaiizenbo.moonlight.module.settings.DoubleSetting;
+import me.kawaiizenbo.moonlight.module.settings.IndexSetting;
 import me.kawaiizenbo.moonlight.module.settings.KeycodeSetting;
 import me.kawaiizenbo.moonlight.module.settings.Setting;
 import me.kawaiizenbo.moonlight.module.settings.StringSetting;
 import me.kawaiizenbo.moonlight.ui.clickgui.ClickGUIScreen;
+import me.kawaiizenbo.moonlight.ui.hud.HUDModule;
+import me.kawaiizenbo.moonlight.ui.hud.HUDModuleManager;
 import net.minecraft.client.MinecraftClient;
 
 public class Config 
@@ -57,7 +60,7 @@ public class Config
                 {
                     ms.put(s.name, ((DoubleSetting)s).value);
                 }
-                if (s instanceof StringSetting)
+                else if (s instanceof StringSetting)
                 {
                     ms.put(s.name, ((StringSetting)s).value);
                 }
@@ -65,11 +68,52 @@ public class Config
                 {
                     ms.put(s.name, ((KeycodeSetting)s).value);
                 }
+                else if (s instanceof IndexSetting)
+                {
+                    ms.put(s.name, ((IndexSetting)s).index);
+                }
 			}
             mo.put("settings", ms);
             mi.put(m.name, mo);
 		}
         config.put("modules", mi);
+        
+        HUDModuleManager.INSTANCE = new HUDModuleManager();
+        Map<String, Object> hi = new HashMap<>();
+        for (HUDModule h : HUDModuleManager.INSTANCE.modules)
+		{
+			Map<String, Object> ho = new HashMap<>();
+            ho.put("enabled", h.enabled);
+            Map<String, Object> hs = new HashMap<>();
+			for (Setting s : h.settings)
+			{
+                if (s instanceof BooleanSetting)
+                {
+                    hs.put(s.name, ((BooleanSetting)s).value);
+                }
+                else if (s instanceof DoubleSetting)
+                {
+                    hs.put(s.name, ((DoubleSetting)s).value);
+                }
+                else if (s instanceof StringSetting)
+                {
+                    hs.put(s.name, ((StringSetting)s).value);
+                }
+                else if (s instanceof KeycodeSetting)
+                {
+                    hs.put(s.name, ((KeycodeSetting)s).value);
+                }
+                else if (s instanceof IndexSetting)
+                {
+                    hs.put(s.name, ((IndexSetting)s).index);
+                }
+			}
+            ho.put("settings", hs);
+            ho.put("x", h.x);
+            ho.put("y", h.y);
+            hi.put(h.name, ho);
+		}
+        config.put("hud", hi);
         int xOffset = 4;
 		int yOffset = 4;
         Map<String, Object> pi = new HashMap<>();
@@ -91,7 +135,8 @@ public class Config
         ClickGUIScreen.INSTANCE = new ClickGUIScreen();
     }
 
-    public void load() throws IOException
+    @SuppressWarnings("unchecked")
+	public void load() throws IOException
     {
         try
         {
