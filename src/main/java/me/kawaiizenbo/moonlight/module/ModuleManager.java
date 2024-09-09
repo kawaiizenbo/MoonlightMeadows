@@ -24,7 +24,8 @@ public class ModuleManager
 			new AutoJump(),
 			new Reach(),
 			new AntiPowderSnow(),
-			new AutoTotem()
+			new AutoTotem(),
+			new AutoWalk()
 			/*new Timer()*/
 		);
     }
