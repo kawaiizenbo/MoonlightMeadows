@@ -24,7 +24,8 @@ public class ClientPlayerEntityMixin
         }
     }
 
-    @Inject(method = "tick", at = @At(value = "HEAD"), cancellable = true)
+    @SuppressWarnings("resource")
+	@Inject(method = "tick", at = @At(value = "HEAD"), cancellable = true)
     public void onTick(CallbackInfo ci) 
     {
         for (Module m : ModuleManager.INSTANCE.getEnabledModules()) 

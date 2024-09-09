@@ -15,6 +15,7 @@ public class ClickGUIScreen extends Screen
     public static ClickGUIScreen INSTANCE = new ClickGUIScreen();
     public ArrayList<CategoryPane> categoryPanes;
 	
+	@SuppressWarnings("unchecked")
 	public ClickGUIScreen() 
 	{
 		super(Text.literal("ClickGUI"));
