@@ -1,13 +1,9 @@
 package me.kawaiizenbo.moonlight.ui.hud.modules;
 
 import me.kawaiizenbo.moonlight.ui.hud.HUDModule;
-import me.kawaiizenbo.moonlight.util.ColorUtils;
-import me.kawaiizenbo.moonlight.util.MathUtils;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.Vec3d;
 
 public class ArmorDisplay extends HUDModule
 {

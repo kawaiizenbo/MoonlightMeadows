@@ -2,8 +2,10 @@ package me.kawaiizenbo.moonlight.ui.clickgui;
 
 import java.util.ArrayList;
 
+import me.kawaiizenbo.moonlight.Moonlight;
 import me.kawaiizenbo.moonlight.module.Category;
 import me.kawaiizenbo.moonlight.module.ModuleManager;
+import me.kawaiizenbo.moonlight.util.DrawUtils;
 import me.kawaiizenbo.moonlight.module.Module;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -26,7 +28,7 @@ public class CategoryPane
         this.y = initialY;
         this.collapsed = collapsed;
         moduleButtons = new ArrayList<ModuleButton>();
-        icon = Identifier.of("moonlight", category.name.toLowerCase());
+        icon = DrawUtils.getThemedGUIIcon(category.name.toLowerCase());
         for (Module m : ModuleManager.INSTANCE.getModulesByCategory(category))
         {
             moduleButtons.add(new ModuleButton(m));
@@ -42,10 +44,10 @@ public class CategoryPane
             x = mouseX - startX;
             y = mouseY - startY;
         }
-        drawContext.fill(x, y, x+width, collapsed ? y+16 : y+height, category.color);
-        drawContext.fill(x+2, y+2, x+(width-2), y+14, hovered(mouseX, mouseY) ? 0xFF333333 : 0xFF222222);
+        drawContext.fill(x, y, x+width, collapsed ? y+16 : y+height, Moonlight.THEME.themedWindowBorders ? Moonlight.THEME.border.getRGB() : category.color);
+        //drawContext.fill(x+2, y+2, x+(width-2), y+14, hovered(mouseX, mouseY) ? Moonlight.THEME.hover.getRGB() : Moonlight.THEME.background.getRGB());
         drawContext.drawGuiTexture(icon, x+2, y+2, 12, 12);
-        drawContext.drawText(textRenderer, category.name, x+16, y+4, 0xFFFFFFFF, false);
+        drawContext.drawText(textRenderer, category.name, x+16, y+4, Moonlight.THEME.headerText.getRGB(), false);
         if (!collapsed)
         {
             int buttonYOffset = y+16;

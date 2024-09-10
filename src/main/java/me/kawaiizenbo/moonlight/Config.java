@@ -44,6 +44,7 @@ public class Config
     public void loadDefaultConfig()
     {
         ModuleManager.INSTANCE = new ModuleManager();
+        config.put("theme", 2);
         Map<String, Object> mi = new HashMap<>();
         for (Module m : ModuleManager.INSTANCE.modules)
 		{

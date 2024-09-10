@@ -2,11 +2,12 @@ package me.kawaiizenbo.moonlight.ui.hud.editor;
 
 import java.util.ArrayList;
 
+import me.kawaiizenbo.moonlight.Moonlight;
 import me.kawaiizenbo.moonlight.ui.hud.HUDModule;
 import me.kawaiizenbo.moonlight.ui.hud.HUDModuleManager;
+import me.kawaiizenbo.moonlight.util.DrawUtils;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.util.Identifier;
 
 public class HUDModuleList 
 {
@@ -37,10 +38,10 @@ public class HUDModuleList
             x = mouseX - startX;
             y = mouseY - startY;
         }
-        drawContext.fill(x, y, x+width, collapsed ? y+16 : y+height, 0xFF55FFFF);
-        drawContext.fill(x+2, y+2, x+(width-2), y+14, hovered(mouseX, mouseY) ? 0xFF333333 : 0xFF222222);
-        drawContext.drawGuiTexture(Identifier.of("moonlight", "hud"), x+2, y+2, 12, 12);
-        drawContext.drawText(textRenderer, "HUD Modules", x+16, y+4, 0xFFFFFFFF, false);
+        drawContext.fill(x, y, x+width, collapsed ? y+16 : y+height, Moonlight.THEME.themedWindowBorders ? Moonlight.THEME.border.getRGB() : Moonlight.THEME.accent.getRGB());
+        //drawContext.fill(x+2, y+2, x+(width-2), y+14, hovered(mouseX, mouseY) ? Moonlight.THEME.hover.getRGB() : Moonlight.THEME.background.getRGB());
+        drawContext.drawGuiTexture(DrawUtils.getThemedGUIIcon("hud"), x+2, y+2, 12, 12);
+        drawContext.drawText(textRenderer, "HUD Modules", x+16, y+4, Moonlight.THEME.headerText.getRGB(), false);
         if (!collapsed)
         {
             int buttonYOffset = y+16;

@@ -1,5 +1,6 @@
 package me.kawaiizenbo.moonlight.ui;
 
+import me.kawaiizenbo.moonlight.Moonlight;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -10,14 +11,13 @@ public class SetScreenButton
 {
     String text;
     Screen screen;
-    int x, y, color, width;
+    int x, y, width;
 
-    public SetScreenButton(String text, int x, int y, int color, Screen screen)
+    public SetScreenButton(String text, int x, int y, Screen screen)
     {
         this.text = text;
         this.x = x;
         this.y = y;
-        this.color = color;
         this.screen = screen;
     }
 
@@ -26,8 +26,8 @@ public class SetScreenButton
     	this.x = x;
         this.y = y;
         width = textRenderer.getWidth(text);
-        drawContext.fill(x-1, y-1, x + width + 1, y + 10, hovered(mouseX, mouseY) ? 0x55FFFFFF : 0);
-        drawContext.drawText(textRenderer, Text.literal(text), x, y, color, true);
+        drawContext.fill(x-1, y-1, x + width + 1, y + 10, hovered(mouseX, mouseY) ? 0x22222222 : 0);
+        drawContext.drawText(textRenderer, Text.literal(text), x, y, Moonlight.THEME.headerText.getRGB(), false);
     }
 
     public boolean hovered(int mouseX, int mouseY) 

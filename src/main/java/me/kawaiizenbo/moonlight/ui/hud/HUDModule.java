@@ -2,6 +2,7 @@ package me.kawaiizenbo.moonlight.ui.hud;
 
 import java.util.ArrayList;
 
+import me.kawaiizenbo.moonlight.Moonlight;
 import me.kawaiizenbo.moonlight.module.settings.Setting;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -35,7 +36,7 @@ public abstract class HUDModule
                 x = mouseX - startX;
                 y = mouseY - startY;
             }
-    		drawContext.fill(x-1, y-1, x+width+1, y+height+1, enabled ? 0xFF55FFFF : 0xFF555555);
+    		drawContext.fill(x-1, y-1, x+width+1, y+height+1, enabled ? Moonlight.THEME.accent.getRGB() : 0xFF555555);
     		drawContext.fill(x, y, x+width, y+height, 0xFF222222);
     	}
     }
