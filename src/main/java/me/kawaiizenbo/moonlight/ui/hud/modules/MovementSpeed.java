@@ -1,5 +1,6 @@
 package me.kawaiizenbo.moonlight.ui.hud.modules;
 
+import me.kawaiizenbo.moonlight.Moonlight;
 import me.kawaiizenbo.moonlight.ui.hud.HUDModule;
 import me.kawaiizenbo.moonlight.util.ColorUtils;
 import me.kawaiizenbo.moonlight.util.MathUtils;
@@ -21,7 +22,7 @@ public class MovementSpeed extends HUDModule
 	public void render(DrawContext drawContext, int mouseX, int mouseY, TextRenderer textRenderer, boolean editMode, boolean enabled) 
 	{
 		super.render(drawContext, mouseX, mouseY, textRenderer, editMode, enabled);
-		drawContext.drawTextWithShadow(mc.textRenderer, "Meters/s: " + ColorUtils.gray + MathUtils.round(moveSpeed(), 2), x, y, 0xFF55FFFF);
+		drawContext.drawTextWithShadow(mc.textRenderer, "Meters/s: " + ColorUtils.gray + MathUtils.round(moveSpeed(), 2), x, y, Moonlight.THEME.hudAccent.getRGB());
 	}
 	
 	private double moveSpeed() 

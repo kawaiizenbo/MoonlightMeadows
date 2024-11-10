@@ -1,5 +1,6 @@
 package me.kawaiizenbo.moonlight.ui.hud.editor;
 
+import me.kawaiizenbo.moonlight.Moonlight;
 import me.kawaiizenbo.moonlight.ui.hud.HUDModule;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -23,8 +24,8 @@ public class HUDModuleButton
     {
 		this.x = x;
 		this.y = y;
-		drawContext.fill(x, y, x + width, y + height, hovered(mouseX, mouseY) ? 0xFF333333 : 0xFF222222);
-		drawContext.drawText(textRenderer, module.name, x+2, y+2, module.enabled ? 0x55FFFF : 0xFFFFFF, false);
+		drawContext.fill(x, y, x + width, y + height, hovered(mouseX, mouseY) ? Moonlight.THEME.hover.getRGB() : Moonlight.THEME.background.getRGB());
+		drawContext.drawText(textRenderer, module.name, x+2, y+2, module.enabled ? Moonlight.THEME.accent.getRGB() : Moonlight.THEME.text.getRGB(), false);
 		if (!module.settings.isEmpty()) drawContext.drawGuiTexture(RenderLayer::getGuiTextured, Identifier.of("moonlight", "settings"), x+width-12, y, 12, 12);
 	}
 	

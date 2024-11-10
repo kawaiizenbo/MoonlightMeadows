@@ -1,5 +1,6 @@
 package me.kawaiizenbo.moonlight.module.settings;
 
+import me.kawaiizenbo.moonlight.Moonlight;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
@@ -18,10 +19,10 @@ public class BooleanSetting extends Setting
     public void render(DrawContext drawContext, int x, int y, int mouseX, int mouseY, TextRenderer textRenderer) 
     {
         super.render(drawContext, x, y, mouseX, mouseY, textRenderer);
-        drawContext.drawTextWithShadow(textRenderer, Text.literal(name), x+2, y+8, 0xFFFFFF);
-        drawContext.fill(x+180, y+7, x+190, y+17, 0xFFFFFFFF);
-        drawContext.fill(x+181, y+8, x+189, y+16, 0xFF222222);
-        drawContext.fill(x+182, y+9, x+188, y+15, value ? 0xFF55FFFF : 0xFF222222);
+        drawContext.drawText(textRenderer, Text.literal(name), x+2, y+8, Moonlight.THEME.text.getRGB(), false);
+        drawContext.fill(x+180, y+7, x+190, y+17, Moonlight.THEME.border.getRGB());
+        drawContext.fill(x+181, y+8, x+189, y+16, Moonlight.THEME.background.getRGB());
+        drawContext.fill(x+182, y+9, x+188, y+15, value ? Moonlight.THEME.accent.getRGB() : Moonlight.THEME.background.getRGB());
     }
     
     @Override

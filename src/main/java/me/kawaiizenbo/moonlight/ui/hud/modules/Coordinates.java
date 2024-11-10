@@ -1,5 +1,6 @@
 package me.kawaiizenbo.moonlight.ui.hud.modules;
 
+import me.kawaiizenbo.moonlight.Moonlight;
 import me.kawaiizenbo.moonlight.ui.hud.HUDModule;
 import me.kawaiizenbo.moonlight.util.ColorUtils;
 import net.minecraft.client.font.TextRenderer;
@@ -22,7 +23,7 @@ public class Coordinates extends HUDModule
 		drawContext.drawTextWithShadow(mc.textRenderer, 
 	            "X: " + ColorUtils.gray + String.format("%.1f", mc.player.getX()) + ColorUtils.reset + 
 	            " Y: " + ColorUtils.gray + String.format("%.1f", mc.player.getY()) + ColorUtils.reset + 
-	            " Z: " + ColorUtils.gray + String.format("%.1f", mc.player.getZ()), x, y, 0xFF55FFFF
+	            " Z: " + ColorUtils.gray + String.format("%.1f", mc.player.getZ()), x, y, Moonlight.THEME.hudAccent.getRGB()
 	        );
 	}
 }

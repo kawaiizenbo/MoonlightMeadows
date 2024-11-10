@@ -5,6 +5,7 @@ import java.util.Map;
 
 import me.kawaiizenbo.moonlight.Moonlight;
 import me.kawaiizenbo.moonlight.module.Category;
+import me.kawaiizenbo.moonlight.theme.Theme;
 import me.kawaiizenbo.moonlight.util.MathUtils;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -35,6 +36,9 @@ public class ClickGUIScreen extends Screen
 	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) 
 	{
 		this.renderBackground(drawContext, mouseX, mouseY, delta);
+		drawContext.fill(width-80, height-16, width, height, Moonlight.THEME.border.getRGB());
+		drawContext.fill(width-78, height-14, width-2, height-2, (mouseX > width-80 && mouseY > height-16) ? Moonlight.THEME.hover.getRGB() : Moonlight.THEME.background.getRGB());
+		drawContext.drawText(textRenderer, "Change Theme", width-75, height-12, Moonlight.THEME.text.getRGB(), false);
 		for (CategoryPane category : categoryPanes)
 		{
 			category.render(drawContext, mouseX, mouseY, delta, textRenderer);
@@ -47,6 +51,12 @@ public class ClickGUIScreen extends Screen
 		for (CategoryPane category : categoryPanes)
 		{
 			category.mouseClicked((int) mouseX, (int) mouseY, button);
+		}
+		if (mouseX > width-80 && mouseY > height-16)
+		{
+			if (Moonlight.THEME_IDX >= Theme.THEME_LIST.length-1) Moonlight.THEME_IDX = 0;
+			else Moonlight.THEME_IDX++;
+			Moonlight.THEME = Theme.THEME_LIST[Moonlight.THEME_IDX];
 		}
 		return super.mouseClicked(mouseX, mouseY, button);
 	}

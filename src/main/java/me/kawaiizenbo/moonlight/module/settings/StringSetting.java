@@ -1,5 +1,6 @@
 package me.kawaiizenbo.moonlight.module.settings;
 
+import me.kawaiizenbo.moonlight.Moonlight;
 import me.kawaiizenbo.moonlight.util.KeycodeUtils;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -20,13 +21,13 @@ public class StringSetting extends Setting
     public void render(DrawContext drawContext, int x, int y, int mouseX, int mouseY, TextRenderer textRenderer) 
     {
         super.render(drawContext, x, y, mouseX, mouseY, textRenderer);
-        drawContext.drawTextWithShadow(textRenderer, Text.literal(name), x+2, y+8, 0xFFFFFF);
+        drawContext.drawText(textRenderer, Text.literal(name), x+2, y+8, Moonlight.THEME.text.getRGB(), false);
         int twidth = textRenderer.getWidth(value);
-        drawContext.fill(x+96, y+5, x+190, y+19, 0xFFFFFFFF);
-        drawContext.fill(x+97, y+6, x+189, y+18, 0xFF222222);
+        drawContext.fill(x+96, y+5, x+190, y+19, Moonlight.THEME.border.getRGB());
+        drawContext.fill(x+97, y+6, x+189, y+18, Moonlight.THEME.background.getRGB());
         int cursorPos = x+98+twidth;
-        if (focused) drawContext.fill(cursorPos, y+7, cursorPos+1, y+17, 0xFF55FFFF);
-        drawContext.drawTextWithShadow(textRenderer, value, x+98, y+8, 0xFFFFFF);
+        if (focused) drawContext.fill(cursorPos, y+7, cursorPos+1, y+17, Moonlight.THEME.accent.getRGB());
+        drawContext.drawText(textRenderer, value, x+98, y+8, Moonlight.THEME.text.getRGB(), false);
     }
 
     @Override
