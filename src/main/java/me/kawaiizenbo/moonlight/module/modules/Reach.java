@@ -23,22 +23,22 @@ public class Reach extends Module
     public void onEnable()
     {
     	super.onEnable();
-    	oldBe = mc.player.getAttributeInstance(EntityAttributes.PLAYER_BLOCK_INTERACTION_RANGE).getBaseValue();
-    	oldEe = mc.player.getAttributeInstance(EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE).getBaseValue();
+    	oldBe = mc.player.getAttributeInstance(EntityAttributes.BLOCK_INTERACTION_RANGE).getBaseValue();
+    	oldEe = mc.player.getAttributeInstance(EntityAttributes.ENTITY_INTERACTION_RANGE).getBaseValue();
     }
 
     @Override
     public void tick()
     {	
-    	mc.player.getAttributeInstance(EntityAttributes.PLAYER_BLOCK_INTERACTION_RANGE).setBaseValue(blockRange.value);
-    	mc.player.getAttributeInstance(EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE).setBaseValue(entityRange.value);
+    	mc.player.getAttributeInstance(EntityAttributes.BLOCK_INTERACTION_RANGE).setBaseValue(blockRange.value);
+    	mc.player.getAttributeInstance(EntityAttributes.ENTITY_INTERACTION_RANGE).setBaseValue(entityRange.value);
     }
 
     @Override
     public void onDisable()
     {
         super.onDisable();
-        mc.player.getAttributeInstance(EntityAttributes.PLAYER_BLOCK_INTERACTION_RANGE).setBaseValue(oldBe);
-    	mc.player.getAttributeInstance(EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE).setBaseValue(oldEe);
+        mc.player.getAttributeInstance(EntityAttributes.BLOCK_INTERACTION_RANGE).setBaseValue(oldBe);
+    	mc.player.getAttributeInstance(EntityAttributes.ENTITY_INTERACTION_RANGE).setBaseValue(oldEe);
     }
 }

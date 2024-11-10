@@ -20,20 +20,20 @@ public class Speed extends Module
     public void onEnable()
     {
     	super.onEnable();
-    	old = mc.player.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).getBaseValue();
+    	old = mc.player.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED).getBaseValue();
     }
 
     @Override
     public void tick()
     {	
-        mc.player.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).setBaseValue(speed.value/10d);
+        mc.player.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED).setBaseValue(speed.value/10d);
     }
 
     @Override
     public void onDisable()
     {
         super.onDisable();
-        mc.player.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).setBaseValue(old);
+        mc.player.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED).setBaseValue(old);
     }
 
 }

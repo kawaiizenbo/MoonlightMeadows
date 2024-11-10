@@ -14,6 +14,6 @@ public class NoFall extends Module
     @Override
     public void tick()
     {
-        if(mc.player.fallDistance >= 2.5) mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.OnGroundOnly(true));
+        if(mc.player.fallDistance >= 2.5) mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.OnGroundOnly(true, false));
     }
 }

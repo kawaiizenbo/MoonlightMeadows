@@ -20,19 +20,19 @@ public class Step extends Module
     public void onEnable()
     {
     	super.onEnable();
-    	old = mc.player.getAttributeInstance(EntityAttributes.GENERIC_STEP_HEIGHT).getBaseValue();
+    	old = mc.player.getAttributeInstance(EntityAttributes.STEP_HEIGHT).getBaseValue();
     }
 
     @Override
     public void tick()
     {	
-        mc.player.getAttributeInstance(EntityAttributes.GENERIC_STEP_HEIGHT).setBaseValue(stepHeight.value);
+        mc.player.getAttributeInstance(EntityAttributes.STEP_HEIGHT).setBaseValue(stepHeight.value);
     }
 
     @Override
     public void onDisable()
     {
         super.onDisable();
-        mc.player.getAttributeInstance(EntityAttributes.GENERIC_STEP_HEIGHT).setBaseValue(old);
+        mc.player.getAttributeInstance(EntityAttributes.STEP_HEIGHT).setBaseValue(old);
     }
 }
