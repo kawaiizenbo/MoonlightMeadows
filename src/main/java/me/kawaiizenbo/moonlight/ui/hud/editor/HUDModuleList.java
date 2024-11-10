@@ -6,6 +6,7 @@ import me.kawaiizenbo.moonlight.ui.hud.HUDModule;
 import me.kawaiizenbo.moonlight.ui.hud.HUDModuleManager;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Identifier;
 
 public class HUDModuleList 
@@ -39,7 +40,7 @@ public class HUDModuleList
         }
         drawContext.fill(x, y, x+width, collapsed ? y+16 : y+height, 0xFF55FFFF);
         drawContext.fill(x+2, y+2, x+(width-2), y+14, hovered(mouseX, mouseY) ? 0xFF333333 : 0xFF222222);
-        drawContext.drawGuiTexture(Identifier.of("moonlight", "hud"), x+2, y+2, 12, 12);
+        drawContext.drawGuiTexture(RenderLayer::getGuiTextured, Identifier.of("moonlight", "hud"), x+2, y+2, 12, 12);
         drawContext.drawText(textRenderer, "HUD Modules", x+16, y+4, 0xFFFFFFFF, false);
         if (!collapsed)
         {

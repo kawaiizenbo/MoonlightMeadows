@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "moonlight",
-  "version": "v0.3.0",
+  "version": "v0.3.1",
   "name": "Moonlight Meadows",
   "description": "Utility mod with a focus on stability.",
   "authors": [
@@ -29,9 +29,9 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.16.3",
+    "fabricloader": ">=0.16.9",
     "fabric-api": "*",
-    "minecraft": "~1.21.1",
+    "minecraft": "~1.21.3",
     "java": ">=21"
   }
 }

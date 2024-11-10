@@ -7,6 +7,7 @@ import me.kawaiizenbo.moonlight.module.ModuleManager;
 import me.kawaiizenbo.moonlight.module.Module;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Identifier;
 
 public class CategoryPane 
@@ -44,7 +45,7 @@ public class CategoryPane
         }
         drawContext.fill(x, y, x+width, collapsed ? y+16 : y+height, category.color);
         drawContext.fill(x+2, y+2, x+(width-2), y+14, hovered(mouseX, mouseY) ? 0xFF333333 : 0xFF222222);
-        drawContext.drawGuiTexture(icon, x+2, y+2, 12, 12);
+        drawContext.drawGuiTexture(RenderLayer::getGuiTextured, icon, x+2, y+2, 12, 12);
         drawContext.drawText(textRenderer, category.name, x+16, y+4, 0xFFFFFFFF, false);
         if (!collapsed)
         {

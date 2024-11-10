@@ -28,7 +28,7 @@ public class ArmorDisplay extends HUDModule
 		{
 			ItemStack piece = mc.player.getInventory().getStack(i);
 			drawContext.drawItem(piece, x, y+yOffset);
-			drawContext.drawItemInSlot(textRenderer, piece, x, y+yOffset);
+			drawContext.drawStackOverlay(textRenderer, piece, x, y+yOffset);
 			yOffset += 16;
 		}
 	}
