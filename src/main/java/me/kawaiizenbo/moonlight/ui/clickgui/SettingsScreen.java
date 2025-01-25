@@ -1,5 +1,6 @@
 package me.kawaiizenbo.moonlight.ui.clickgui;
 
+import me.kawaiizenbo.moonlight.Moonlight;
 import me.kawaiizenbo.moonlight.module.Module;
 import me.kawaiizenbo.moonlight.module.settings.Setting;
 import me.kawaiizenbo.moonlight.ui.SetScreenButton;
@@ -21,8 +22,8 @@ public class SettingsScreen extends Screen
     public SettingsScreen(Module module) 
     {
         super(Text.literal("Settings"));
-        backButton = new SetScreenButton(ColorUtils.underline + "< Back", x+4, y+4, 0xFFFFFF, ClickGUIScreen.INSTANCE);
-        editButton = new SetScreenButton(ColorUtils.underline + "Edit", x+windowWidth-22, y+4, 0xFFFFFF, HUDEditorScreen.INSTANCE);
+        backButton = new SetScreenButton(ColorUtils.underline + "< Back", x+4, y+4, ClickGUIScreen.INSTANCE);
+        editButton = new SetScreenButton(ColorUtils.underline + "Edit", x+windowWidth-22, y+4, HUDEditorScreen.INSTANCE);
         this.module = module;
     }
 
@@ -37,11 +38,12 @@ public class SettingsScreen extends Screen
             x = mouseX - startX;
             y = mouseY - startY;
         }
-        drawContext.fill(x, y, x+windowWidth, y+windowHeight, 0xFF222222);
-        drawContext.fill(x, y, x+windowWidth, y+16, module.category.color);
-        drawContext.fill(x+2, y+2, x+(windowWidth-2), y+14, 0xFF222222);
-        drawContext.drawCenteredTextWithShadow(textRenderer, module.name, x+(windowWidth/2), y+4, 0xFFFFFF);
-        drawContext.drawText(textRenderer, module.description, x+8, y+24, 0xFFFFFF, true);
+        drawContext.fill(x, y, x+windowWidth, y+windowHeight, Moonlight.THEME.themedWindowBorders ? Moonlight.THEME.border.getRGB() : module.category.color);
+        drawContext.fill(x+2, y+2, x+windowWidth-2, y+windowHeight-2, Moonlight.THEME.background.getRGB());
+        drawContext.fill(x, y, x+windowWidth, y+16, Moonlight.THEME.themedWindowBorders ? Moonlight.THEME.border.getRGB() : module.category.color);
+        //drawContext.fill(x+2, y+2, x+(windowWidth-2), y+14, Moonlight.THEME.background.getRGB());
+        drawContext.drawText(textRenderer, module.name, x+((windowWidth/2)-(textRenderer.getWidth(module.name)/2)), y+4, Moonlight.THEME.headerText.getRGB(), false);
+        drawContext.drawText(textRenderer, module.description, x+8, y+24, Moonlight.THEME.text.getRGB(), false);
         backButton.render(drawContext, textRenderer, mouseX, mouseY, x+4, y+4);
         if (module.showEditButton) editButton.render(drawContext, textRenderer, mouseX, mouseY, x+windowWidth-22, y+4);
 		int yOffset = y+40;

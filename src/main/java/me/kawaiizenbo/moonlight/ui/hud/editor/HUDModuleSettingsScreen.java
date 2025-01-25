@@ -1,5 +1,6 @@
 package me.kawaiizenbo.moonlight.ui.hud.editor;
 
+import me.kawaiizenbo.moonlight.Moonlight;
 import me.kawaiizenbo.moonlight.module.settings.Setting;
 import me.kawaiizenbo.moonlight.ui.SetScreenButton;
 import me.kawaiizenbo.moonlight.ui.hud.HUDModule;
@@ -20,7 +21,7 @@ public class HUDModuleSettingsScreen extends Screen
     public HUDModuleSettingsScreen(HUDModule module) 
     {
         super(Text.literal("Settings"));
-        backButton = new SetScreenButton(ColorUtils.underline + "< Back", x+4, y+4, 0xFFFFFF, HUDEditorScreen.INSTANCE);
+        backButton = new SetScreenButton(ColorUtils.underline + "< Back", x+4, y+4, HUDEditorScreen.INSTANCE);
         this.module = module;
     }
 
@@ -35,10 +36,11 @@ public class HUDModuleSettingsScreen extends Screen
             x = mouseX - startX;
             y = mouseY - startY;
         }
-        drawContext.fill(x, y, x+windowWidth, y+windowHeight, 0xFF222222);
-        drawContext.fill(x, y, x+windowWidth, y+16, 0xFF55FFFF);
-        drawContext.fill(x+2, y+2, x+(windowWidth-2), y+14, 0xFF222222);
-        drawContext.drawCenteredTextWithShadow(textRenderer, module.name, x+(windowWidth/2), y+4, 0xFFFFFF);
+        drawContext.fill(x, y, x+windowWidth, y+windowHeight, Moonlight.THEME.themedWindowBorders ? Moonlight.THEME.border.getRGB() : Moonlight.THEME.accent.getRGB());
+        drawContext.fill(x+2, y+2, x+windowWidth-2, y+windowHeight-2, Moonlight.THEME.background.getRGB());
+        drawContext.fill(x, y, x+windowWidth, y+16, Moonlight.THEME.themedWindowBorders ? Moonlight.THEME.border.getRGB() : Moonlight.THEME.accent.getRGB());
+        //drawContext.fill(x+2, y+2, x+(windowWidth-2), y+14, Moonlight.THEME.background.getRGB());
+        drawContext.drawText(textRenderer, module.name, x+((windowWidth/2)-(textRenderer.getWidth(module.name)/2)), y+4, Moonlight.THEME.headerText.getRGB(), false);
         backButton.render(drawContext, textRenderer, mouseX, mouseY, x+4, y+4);
 		int yOffset = y+24;
 		for (Setting setting : module.settings)

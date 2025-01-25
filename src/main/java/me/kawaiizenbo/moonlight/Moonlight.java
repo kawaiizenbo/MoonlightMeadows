@@ -16,6 +16,7 @@ import me.kawaiizenbo.moonlight.module.settings.IndexSetting;
 import me.kawaiizenbo.moonlight.module.settings.KeycodeSetting;
 import me.kawaiizenbo.moonlight.module.settings.Setting;
 import me.kawaiizenbo.moonlight.module.settings.StringSetting;
+import me.kawaiizenbo.moonlight.theme.Theme;
 import me.kawaiizenbo.moonlight.ui.clickgui.CategoryPane;
 import me.kawaiizenbo.moonlight.ui.clickgui.ClickGUIScreen;
 import me.kawaiizenbo.moonlight.ui.hud.HUDModule;
@@ -27,7 +28,9 @@ public class Moonlight implements ModInitializer
 	public static final Moonlight INSTANCE = new Moonlight();
 	public static final Logger LOGGER = LoggerFactory.getLogger("Moonlight");
 	public static final String clientTag = ColorUtils.aqua + "Moonlight Meadows";
-	public static final String versionTag = ColorUtils.magenta + "v0.3.1";
+	public static final String versionTag = ColorUtils.magenta + "v0.4.0";
+	public static Theme THEME = Theme.DARK;
+	public static int THEME_IDX = 2;
 	public static Config CONFIG = new Config();
 
 	@Override
@@ -44,6 +47,8 @@ public class Moonlight implements ModInitializer
 		{
 			LOGGER.info("Loading config...");
 			CONFIG.load();
+			THEME_IDX = ((Double)CONFIG.config.get("theme")).intValue();
+			THEME = Theme.THEME_LIST[THEME_IDX];
 			for (Module m : ModuleManager.INSTANCE.modules)
 			{
 				m.enabled = (boolean)((Map<String, Object>)((Map<String, Object>)CONFIG.config.get("modules")).get(m.name)).get("enabled");
@@ -113,6 +118,7 @@ public class Moonlight implements ModInitializer
 	public void saveConfig()
 	{
 		LOGGER.info("Saving config...");
+		CONFIG.config.put("theme", THEME_IDX);
 		Map<String, Object> mi = new HashMap<>();
         for (Module m : ModuleManager.INSTANCE.modules)
 		{

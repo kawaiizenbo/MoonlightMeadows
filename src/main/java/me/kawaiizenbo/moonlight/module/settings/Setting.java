@@ -1,5 +1,6 @@
 package me.kawaiizenbo.moonlight.module.settings;
 
+import me.kawaiizenbo.moonlight.Moonlight;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 
@@ -12,7 +13,7 @@ public class Setting
     { 
         this.x = x;
         this.y = y;
-        drawContext.fill(x, y, x+192, y+24, hovered(mouseX, mouseY) ? 0xFF444444: 0xFF222222);
+        drawContext.fill(x, y, x+192, y+24, hovered(mouseX, mouseY) ? Moonlight.THEME.hover.getRGB(): Moonlight.THEME.background.getRGB());
         
     }
 
