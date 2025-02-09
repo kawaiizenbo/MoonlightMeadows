@@ -1,4 +1,5 @@
 # Moonlight Meadows Utility Mod for Modern versions of Minecraft
+## This repo has moved, please see https://git.kawaiizenbo.me/kawaiizenbo/MoonlightMeadows
 
 Requires Fabric, Fabric API, and Minecraft 1.21
 
